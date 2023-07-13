@@ -8,28 +8,32 @@ import src.functions.directories
 
 class Dearchive:
 
-    def __init__(self):
+    def __init__(self, path: str):
         """
 
+        :param path: A local directory path for the unzipped set of files
         """
 
-        self.__directories = src.functions.directories.Directories()
+        self.__path = path
+        self.__setup(path=self.__path)
 
-    def __setup(self, path: str):
+    @staticmethod
+    def __setup(path: str):
         """
 
         :param path: A local directory path
         :return:
         """
 
-        self.__directories.cleanup(path=path)
-        self.__directories.create(path=path)
+        directories = src.functions.directories.Directories()
+        directories.cleanup(path=path)
+        directories.create(path=path)
 
-    def exc(self, url: str, path: str):
+    def exc(self, url: str):
         """
 
         :param url: The URL (uniform resource locator) of an online archive of images
-        :param path: A local directory path for the unzipped set of files
+
         :return:
         """
 
@@ -38,6 +42,5 @@ class Dearchive:
         except requests.HTTPError as err:
             raise Exception(err)
 
-        self.__setup(path=path)
         objects = zipfile.ZipFile(io.BytesIO(request.content))
-        objects.extractall(path=path)
+        objects.extractall(path=self.__path)
