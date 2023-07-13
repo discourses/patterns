@@ -2,7 +2,6 @@ import logging
 import os
 import sys
 
-import dask
 import numpy as np
 
 
@@ -12,12 +11,13 @@ def main():
     :return:
     """
 
+    # The URL strings of the images zip files
     endpoint = 'https://github.com/greyhypotheses/dermatology/raw/master/augmentations/images/{name}.zip'
     strings = [endpoint.format(name=str(number).zfill(3)) for number in np.arange(0, 196)]
     logger.info(strings)
 
-    images = [dask.delayed(dearchive.exc)(url=string) for string in strings]
-    dask.compute(images, scheduler='threads')
+    messages = src.images.read.Read().exc(strings=strings)
+    logger.info(messages)
 
 
 if __name__ == '__main__':
@@ -37,9 +37,6 @@ if __name__ == '__main__':
     logger = logging.getLogger(__name__)
 
     # Classes
-    import src.functions.dearchive
-
-    # Instances
-    dearchive = src.functions.dearchive.Dearchive(path=os.path.join(os.getcwd(), 'images'))
+    import src.images.read
 
     main()
