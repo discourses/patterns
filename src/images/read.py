@@ -15,7 +15,7 @@ class Read:
     @dask.delayed
     def __executing(self, url) -> str:
         
-        return self.__dearchive.exc(url=url)
+        return self.__dearchive.external(url=url)
         
     def exc(self, strings: list[str]) -> list:
 
