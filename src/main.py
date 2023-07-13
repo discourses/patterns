@@ -2,6 +2,8 @@ import os
 import logging
 import sys
 
+import tensorflow as tf
+
 
 def main():
     """
@@ -10,6 +12,9 @@ def main():
     """
 
     logger.info('Patterns')
+
+    devices = tf.config.list_physical_devices('GPU')
+    logger.info(devices)
 
 
 if __name__ == '__main__':
