@@ -4,19 +4,26 @@ import io
 import os
 import sys
 
+import src.functions.directories
 
-class Archives:
+
+class Dearchive:
 
     def __init__(self):
         """
 
         """
 
-    def __directories(self):
+        self.__directories = src.functions.directories.Directories()
+
+    def __setup(self, path: str):
         """
 
         :return:
         """
+
+        self.__directories.cleanup(path=path)
+        self.__directories.create(path=path)
 
     def exc(self, url: str, path: str):
         """
@@ -31,5 +38,6 @@ class Archives:
         except requests.HTTPError as err:
             raise Exception(err)
 
+        self.__setup(path=path)
         objects = zipfile.ZipFile(io.BytesIO(request.content))
         objects.extractall(path=path)
