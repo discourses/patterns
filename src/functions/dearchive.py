@@ -1,4 +1,5 @@
 import io
+import os.path
 import zipfile
 
 import requests
@@ -29,7 +30,7 @@ class Dearchive:
         directories.cleanup(path=path)
         directories.create(path=path)
 
-    def exc(self, url: str):
+    def exc(self, url: str) -> str:
         """
 
         :param url: The URL (uniform resource locator) of an online archive of images
@@ -44,3 +45,5 @@ class Dearchive:
 
         objects = zipfile.ZipFile(io.BytesIO(request.content))
         objects.extractall(path=self.__path)
+
+        return f'{os.path.basename(url)}'
