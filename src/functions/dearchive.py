@@ -30,11 +30,10 @@ class Dearchive:
         directories.cleanup(path=path)
         directories.create(path=path)
 
-    def exc(self, url: str) -> str:
+    def external(self, url: str) -> str:
         """
 
         :param url: The URL (uniform resource locator) of an online archive of images
-
         :return:
         """
 
