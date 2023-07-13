@@ -5,6 +5,7 @@ import sys
 import numpy as np
 
 import tensorflow as tf
+import dask
 
 
 def main():
@@ -24,6 +25,9 @@ def main():
     strings = [endpoint.format(name=str(number).zfill(3)) for number in np.arange(0, 16)]
     logger.info(strings)
 
+    images = [dask.delayed(dearchive.exc)(url=string) for string in strings]
+    dask.compute(images, scheduler='threads')
+
 
 if __name__ == '__main__':
 
@@ -31,6 +35,9 @@ if __name__ == '__main__':
     root = os.getcwd()
     sys.path.append(root)
     sys.path.append(os.path.join(root, 'src'))
+
+    # Threads
+    os.environ['NUMEXPR_MAX_THREADS'] = '8'
 
     # Logging
     logging.basicConfig(level=logging.INFO,
@@ -40,5 +47,8 @@ if __name__ == '__main__':
 
     # Classes
     import src.functions.dearchive
+
+    # Instances
+    dearchive = src.functions.dearchive.Dearchive(path=os.path.join(os.getcwd(), 'images'))
 
     main()
