@@ -1,8 +1,7 @@
-import requests
-import zipfile
 import io
-import os
-import sys
+import zipfile
+
+import requests
 
 import src.functions.directories
 
@@ -19,6 +18,7 @@ class Dearchive:
     def __setup(self, path: str):
         """
 
+        :param path: A local directory path
         :return:
         """
 
@@ -28,8 +28,8 @@ class Dearchive:
     def exc(self, url: str, path: str):
         """
 
-        :param url:
-        :param path:
+        :param url: The URL (uniform resource locator) of an online archive of images
+        :param path: A local directory path for the unzipped set of files
         :return:
         """
 
