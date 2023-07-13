@@ -13,6 +13,7 @@ def main():
 
     logger.info('Patterns')
 
+    # The machine has two GPU (graphics processing units) devices
     devices = tf.config.list_physical_devices('GPU')
     logger.info(devices)
 
