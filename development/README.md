@@ -51,6 +51,19 @@ additionally, in aid of code analysis
 <br>
 <br>
 
+### Code Analysis & Standards
+
+`pylint` code analysis:
+
+```shell
+  python -m pylint --rcfile .pylintrc ...
+```
+
+
+
+<br>
+<br>
+
 <br>
 <br>
 
