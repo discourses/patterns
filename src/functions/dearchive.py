@@ -48,7 +48,7 @@ class Dearchive:
         except ConnectionError as err:
             raise ValueError(err) from err
 
-        with zipfile.ZipFile(io.BytesIO(request.content), 'w') as objects:
+        with zipfile.ZipFile(io.BytesIO(request.content), 'r') as objects:
             objects.extractall(path=self.__path)
 
         return f'{os.path.basename(url)}'
