@@ -1,3 +1,6 @@
+"""
+dearchive.py
+"""
 import io
 import os.path
 import zipfile
@@ -8,6 +11,9 @@ import src.functions.directories
 
 
 class Dearchive:
+    """
+    Class Dearchive
+    """
 
     def __init__(self, path: str):
         """
