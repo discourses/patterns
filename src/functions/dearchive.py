@@ -44,11 +44,11 @@ class Dearchive:
         """
 
         try:
-            request = requests.get(url=url)
-        except requests.HTTPError as err:
-            raise Exception(err)
+            request = requests.get(url=url, timeout=300)
+        except ConnectionError as err:
+            raise ValueError(err) from err
 
-        objects = zipfile.ZipFile(io.BytesIO(request.content))
-        objects.extractall(path=self.__path)
+        with zipfile.ZipFile(io.BytesIO(request.content), 'w') as objects:
+            objects.extractall(path=self.__path)
 
         return f'{os.path.basename(url)}'
