@@ -65,7 +65,7 @@ jobs:
           pip install pytest
           printf "\n"
           echo "============================= pytest session starts =============================="
-          pytest -o python_files=test_*.py
+          printf "\npytest -o python_files=test_*.py"
 
       - name: Coverage with pytest-cov
         run: |
