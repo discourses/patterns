@@ -39,7 +39,7 @@ class Read:
 
         # Get Images
         computations = []
-        for string in strings[:12]:
+        for string in strings:
             message = self.__executing(url=string)
             computations.append(message)
         messages = dask.compute(computations, scheduler='threads')[0]
