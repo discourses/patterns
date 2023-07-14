@@ -42,6 +42,12 @@ Thus far ...
   pip freeze -f docs/filter.txt > requirements.txt
 ```
 
+additionally, in aid of code analysis
+
+```shell
+  pylint --generate-rcfile > .pylintrc
+```
+
 <br>
 <br>
 
