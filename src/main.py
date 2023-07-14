@@ -49,6 +49,6 @@ if __name__ == '__main__':
     import src.images.interface
 
     # Later, the arguments
-    download = False
+    download = True
 
     main()
