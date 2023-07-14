@@ -37,7 +37,7 @@ if __name__ == '__main__':
     sys.path.append(os.path.join(root, 'src'))
 
     # Threads
-    os.environ['NUMEXPR_MAX_THREADS'] = '8'
+    os.environ['NUMEXPR_MAX_THREADS'] = '13'
 
     # Logging
     logging.basicConfig(level=logging.INFO,
