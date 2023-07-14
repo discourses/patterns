@@ -33,6 +33,7 @@ Always remember to upgrade pip before populating the environment
 ```shell
   pip install tensorflow-directml-plugin
   pip install "dask[complete]"
+  pip install pytest coverage pylint pytest-cov flake8
 ```
 
 Thus far ...
