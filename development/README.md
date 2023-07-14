@@ -28,6 +28,9 @@ Always remember to upgrade pip before populating the environment
   python -m pip install --upgrade pip
 ```
 
+<br>
+<br>
+
 ### Packages
 
 ```shell
