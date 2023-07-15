@@ -16,9 +16,15 @@ class Sampling:
     by comparing the -number of records per label- & -sample size requested-
     """
 
-    def __init__(self, settings: config.Config().Settings, metadata: config.Config().Metadata):
+    Settings = config.Config().Settings
+    Metadata = config.Config().Metadata
+
+    def __init__(self, settings: Settings, metadata: Metadata):
         """
         Constructor
+
+        :param settings:
+        :param metadata:
         """
 
         self.__settings = settings
