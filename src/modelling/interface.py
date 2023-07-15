@@ -4,8 +4,6 @@ interface.py
 import logging
 import os
 
-import pandas as pd
-
 import src.functions.descriptors
 import src.functions.streams
 import src.register.sample
