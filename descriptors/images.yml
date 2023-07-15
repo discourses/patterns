@@ -10,7 +10,7 @@ data:
     index_to: 195
     index_zero_filling: 3
     ext: '.zip'
-    unzip_directory: ['images']
+    directory: ['images']
   features:
     ext: '.png'
     rows: 224
