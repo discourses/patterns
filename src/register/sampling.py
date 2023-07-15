@@ -41,11 +41,12 @@ class Sampling:
 
         if (not self.__settings.replace) & (n_per_label.min() < self.__settings.class_sample_size):
             class_sample_size = n_per_label.min()
-            self.__logger.info(f'Case: Sampling with replacement.\n\nNote, the sample size per class '
-                               f'will be {class_sample_size}, i.e., the '
-                               'sample size of the smallest class because it has fewer images than the requested '
-                               f'sample size per class; {self.__settings.class_sample_size}.  Altogether, this '
-                               f'ensures a balanced data set.')
+            self.__logger.info(f'Case: Sampling with replacement.\n\nNote, the sample size per '
+                               f'class will be {class_sample_size}, i.e., the '
+                               f'sample size of the smallest class because it has fewer '
+                               f'images than the requested sample '
+                               f'size per class; {self.__settings.class_sample_size}.  Altogether, '
+                               f'this ensures a balanced data set.')
         else:
             class_sample_size = self.__settings.class_sample_size
 
