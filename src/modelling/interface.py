@@ -36,5 +36,5 @@ class Interface:
         descriptors = src.functions.descriptors.Descriptors(
             path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
 
-        sample = src.register.sample.Sample().exc(descriptors=descriptors)
+        sample = src.register.sample.Sample(descriptors=descriptors).exc()
         self.__logger.info(sample)
