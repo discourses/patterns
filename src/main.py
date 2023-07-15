@@ -25,6 +25,9 @@ def main():
     if download:
         src.images.interface.Interface().exc()
 
+    # Proceed
+    src.modelling.interface.Interface().exc()
+
 
 if __name__ == '__main__':
     """
@@ -47,6 +50,7 @@ if __name__ == '__main__':
 
     # Classes
     import src.images.interface
+    import src.modelling.interface
 
     # Later, the arguments
     download = False
