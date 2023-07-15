@@ -15,6 +15,10 @@ class Config:
                      'minimum_class_instances', 'batch_size', 'train_size_initial', 'train_size_evaluation',
                      'early_stopping_patience', 'model_checkpoints_directory', 'error_matrix_variables'])
 
+    Metadata = collections.namedtuple(
+        typename='Metadata',
+        field_names=['url', 'key', 'fields', 'labels'])
+
     def __init__(self):
         """
         Constructor
