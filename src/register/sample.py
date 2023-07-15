@@ -39,6 +39,10 @@ class Sample:
         self.__logger = logging.getLogger(type(self).__name__)
 
     def __register(self) -> pd.DataFrame:
+        """
+
+        :return:
+        """
 
         return src.functions.streams.Streams().api(
             uri=self.__metadata.url, header=0)
@@ -46,26 +50,33 @@ class Sample:
     def __sample(self, register: pd.DataFrame) -> pd.DataFrame:
         """
 
+        :param register:
         :return:
         """
 
         return src.register.sampling.Sampling(
             settings=self.__settings, metadata=self.__metadata).exc(register=register)
 
-    @staticmethod
-    def __restructure(register: pd.DataFrame) -> pd.DataFrame:
+    def __restructure(self, register: pd.DataFrame) -> pd.DataFrame:
+        """
 
-        return register
+        :param register:
+        :return:
+        """
+
+        paths = glob.glob(pathname=os.path.join(os.getcwd(), *self.__source.directory, '*.png'))
+        frame = pd.DataFrame(data={'path': paths})
+        frame.loc[:, 'name'] = frame.copy()['path'].apply(lambda x: os.path.split(x)[1])
+
+        frame = frame.copy().merge(register, how='inner', on='name')
+
+        return frame
 
     def exc(self) -> pd.DataFrame:
         """
 
         :return:
         """
-
-        self.__logger.info(self.__source.directory)
-        reg = glob.glob(pathname=os.path.join(os.getcwd(), *self.__source.directory, '*.png'))
-        self.__logger.info(reg)
 
         register = self.__register()
         register = self.__sample(register=register.copy())
