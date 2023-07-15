@@ -4,6 +4,8 @@ interface.py
 import logging
 import os
 
+import pandas as pd
+
 import src.functions.descriptors
 import src.functions.streams
 import src.register.sample
@@ -36,5 +38,7 @@ class Interface:
         descriptors = src.functions.descriptors.Descriptors(
             path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
 
-        sample = src.register.sample.Sample(descriptors=descriptors).exc()
+        sample = src.register.sample.Sample(
+            descriptors=descriptors).exc()
+
         self.__logger.info(sample)
