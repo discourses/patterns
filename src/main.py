@@ -26,7 +26,8 @@ def main():
         src.images.interface.Interface().exc()
 
     # Proceed
-    src.modelling.interface.Interface().exc()
+    temporary = src.modelling.interface.Interface().exc()
+    temporary.info()
 
 
 if __name__ == '__main__':
