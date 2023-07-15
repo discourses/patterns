@@ -9,21 +9,20 @@ class Descriptors:
     """
     Class Descriptors
 
-    Reads-in the YAML of images & modelling features/attributes
+    Reads-in a YAML of maximum depth two
     """
 
-    def __init__(self):
+    def __init__(self, path: str):
 
         # The expected location of the YAML
-        self.__path = os.path.join(os.getcwd(), 'descriptors', 'images.yml')
+        self.__path = path
 
-        # Get the stream of descriptors upon class instantiation: each outlines
-        # images or modelling features/attributes
+        # Get the stream of descriptors upon class instantiation
         self.__stream = self.__get_stream()
 
     def __get_stream(self) -> dict:
         """
-        Reads the YAML file of descriptors.
+        Reads a YAML file of descriptors.
 
         :return:
         """
@@ -41,7 +40,7 @@ class Descriptors:
         :return:
         """
 
-        # the dictionary of keys in focus
+        # The dictionary of keys in focus
         if len(node) == 1:
             dictionary: dict = self.__stream[node[0]]
         else:
