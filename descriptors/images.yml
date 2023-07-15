@@ -19,8 +19,8 @@ data:
     rotations: [0, 90, 180, 270]
 settings:
   sample: True
-  replace: True
-  class_sample_size: 600
+  replace: False
+  class_sample_size: 5000
   epochs: 60
   features: ['url']
   random_state: 5
