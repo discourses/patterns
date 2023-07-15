@@ -4,7 +4,7 @@
 
 <br>
 
-Re-visiting ISIC
+Re-visiting the dermatology images problem.
 
 <br>
 <br>
