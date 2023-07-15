@@ -1,9 +1,8 @@
 """
 sample.py
 """
-import logging
-import os
 import glob
+import os
 
 import pandas as pd
 
@@ -31,12 +30,6 @@ class Sample:
         self.__settings = self.Settings(**descriptors.exc(node=['settings']))
         self.__metadata = self.Metadata(**descriptors.exc(node=['metadata']))
         self.__source = self.Source(**descriptors.exc(node=['data', 'source']))
-
-        # Logging
-        logging.basicConfig(level=logging.INFO,
-                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        self.__logger = logging.getLogger(type(self).__name__)
 
     def __register(self) -> pd.DataFrame:
         """
