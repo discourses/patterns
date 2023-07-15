@@ -2,6 +2,7 @@ metadata:
   url: 'https://github.com/greyhypotheses/dermatology/raw/master/augmentations/inventory.csv'
   key: 'name'
   fields: ['name', 'age_approx', 'anatom_site_general', 'sex', 'angle', 'drawn', 'image']
+  labels: ['AK', 'BCC', 'BKL', 'DF', 'MEL', 'NV', 'SCC', 'VASC']
 data:
   source:
     url: 'https://github.com/greyhypotheses/dermatology/raw/master/augmentations/images/{index}.zip'
@@ -16,7 +17,7 @@ data:
     columns: 224
     channels: 3
     rotations: [0, 90, 180, 270]
-modelling:
+settings:
   sample: True
   replace: True
   class_sample_size: 600
