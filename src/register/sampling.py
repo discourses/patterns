@@ -58,6 +58,22 @@ class Sampling:
 
         return class_sample_size
 
+    def __excerpt(self, register: pd.DataFrame, class_sample_size: int) -> pd.DataFrame:
+        """
+
+        :param register:
+        :param class_sample_size:
+        :return:
+        """
+
+        # Hence
+        excerpt = register.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels] \
+            .apply(lambda x: x.sample(n=class_sample_size, replace=self.__settings.replace,
+                                      random_state=self.__settings.random_state))
+        excerpt.reset_index(drop=True, inplace=True)
+
+        return excerpt
+
     def exc(self, register: pd.DataFrame) -> pd.DataFrame:
         """
 
@@ -70,11 +86,7 @@ class Sampling:
         n_per_label: pd.Series = register[self.__metadata.labels].sum(axis=0)
         class_sample_size: int = self.__sample_size(n_per_label)
 
-        # Hence
-        self.__logger.info(register.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels])
-        excerpt = register.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels] \
-            .apply(lambda x: x.sample(n=class_sample_size, replace=self.__settings.replace,
-                                      random_state=self.__settings.random_state))
-        excerpt.reset_index(drop=True, inplace=True)
+        # The sample
+        excerpt = self.__excerpt(register=register, class_sample_size=class_sample_size)
 
         return excerpt
