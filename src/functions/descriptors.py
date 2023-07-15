@@ -1,7 +1,6 @@
 """
 descriptors.py
 """
-import os
 import yaml
 
 
