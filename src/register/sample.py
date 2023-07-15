@@ -2,6 +2,8 @@
 sample.py
 """
 import logging
+import os
+import glob
 
 import pandas as pd
 
@@ -18,11 +20,17 @@ class Sample:
 
     Settings = config.Config().Settings
     Metadata = config.Config().Metadata
+    Source = config.Config().Source
 
-    def __init__(self):
+    def __init__(self, descriptors: src.functions.descriptors.Descriptors):
         """
-        Constructor
+
+        :param descriptors:
         """
+
+        self.__settings = self.Settings(**descriptors.exc(node=['settings']))
+        self.__metadata = self.Metadata(**descriptors.exc(node=['metadata']))
+        self.__source = self.Source(**descriptors.exc(node=['data', 'source']))
 
         # Logging
         logging.basicConfig(level=logging.INFO,
@@ -30,29 +38,37 @@ class Sample:
                             datefmt='%Y-%m-%d %H:%M:%S')
         self.__logger = logging.getLogger(type(self).__name__)
 
-    def __sample(self, settings: Settings, metadata: Metadata) -> pd.DataFrame:
+    def __register(self) -> pd.DataFrame:
+
+        return src.functions.streams.Streams().api(
+            uri=self.__metadata.url, header=0)
+
+    def __sample(self, register: pd.DataFrame) -> pd.DataFrame:
         """
 
-        :param settings:
-        :param metadata:
         :return:
         """
-
-        register = src.functions.streams.Streams().api(
-            uri=metadata.url, header=0)
-        self.__logger.info(register)
 
         return src.register.sampling.Sampling(
-            settings=settings, metadata=metadata).exc(register=register)
+            settings=self.__settings, metadata=self.__metadata).exc(register=register)
 
-    def exc(self, descriptors: src.functions.descriptors.Descriptors) -> pd.DataFrame:
+    @staticmethod
+    def __restructure(register: pd.DataFrame) -> pd.DataFrame:
+
+        return register
+
+    def exc(self) -> pd.DataFrame:
         """
 
-        :param descriptors:
         :return:
         """
 
-        settings = self.Settings(**descriptors.exc(node=['settings']))
-        metadata = self.Metadata(**descriptors.exc(node=['metadata']))
+        self.__logger.info(self.__source.directory)
+        reg = glob.glob(pathname=os.path.join(os.getcwd(), *self.__source.directory, '*.png'))
+        self.__logger.info(reg)
 
-        return self.__sample(settings=settings, metadata=metadata)
+        register = self.__register()
+        register = self.__sample(register=register.copy())
+        register = self.__restructure(register=register.copy())
+
+        return register
