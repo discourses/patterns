@@ -6,7 +6,7 @@ import logging
 import config
 import src.functions.descriptors
 import src.functions.streams
-import src.algorithms.sampling
+import src.register.sampling
 
 
 class Interface:
@@ -46,4 +46,4 @@ class Interface:
             uri=metadata.url, header=0)
         register.info()
 
-        return src.algorithms.sampling.Sampling(settings=settings, metadata=metadata).exc(register=register)
+        return src.register.sampling.Sampling(settings=settings, metadata=metadata).exc(register=register)
