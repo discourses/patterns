@@ -20,7 +20,7 @@ data:
 settings:
   sample: True
   replace: False
-  class_sample_size: 5000
+  class_sample_size: 500
   epochs: 60
   features: ['url']
   random_state: 5
