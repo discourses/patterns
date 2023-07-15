@@ -6,6 +6,7 @@ import logging
 import config
 import src.algorithms.descriptors
 import src.functions.streams
+import src.algorithms.sampling
 
 
 class Interface:
@@ -41,5 +42,8 @@ class Interface:
         self.__logger.info(metadata)
         self.__logger.info(settings._fields)
 
-        return src.functions.streams.Streams().api(
+        register = src.functions.streams.Streams().api(
             uri=metadata.url, header=0)
+        register.info()
+
+        return src.algorithms.sampling.Sampling(settings=settings, metadata=metadata).exc(register=register)
