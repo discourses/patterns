@@ -5,6 +5,7 @@ import logging
 
 import config
 import src.algorithms.descriptors
+import src.functions.streams
 
 
 class Interface:
@@ -14,6 +15,7 @@ class Interface:
     This class executes the series of modelling, evaluation, etc., steps.
     """
     Modelling = config.Config().Modelling
+    Metadata = config.Config().Metadata
 
     def __init__(self):
         """
@@ -31,7 +33,13 @@ class Interface:
 
         :return:
         """
+        
+        descriptors = src.algorithms.descriptors.Descriptors()
 
-        objects = src.algorithms.descriptors.Descriptors().exc(node=['modelling'])
-        attributes = self.Modelling(**objects)
-        self.__logger.info(attributes._fields)
+        settings = self.Modelling(**descriptors.exc(node=['settings']))
+        metadata = self.Metadata(**descriptors.exc(node=['metadata']))
+        self.__logger.info(metadata)
+        self.__logger.info(settings._fields)
+
+        return src.functions.streams.Streams().api(
+            uri=metadata.url, header=0)
