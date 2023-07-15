@@ -2,11 +2,11 @@
 interface.py
 """
 import logging
+import os
 
-import config
 import src.functions.descriptors
 import src.functions.streams
-import src.register.sampling
+import src.register.sample
 
 
 class Interface:
@@ -15,8 +15,6 @@ class Interface:
 
     This class executes the series of modelling, evaluation, etc., steps.
     """
-    Modelling = config.Config().Modelling
-    Metadata = config.Config().Metadata
 
     def __init__(self):
         """
@@ -34,16 +32,9 @@ class Interface:
 
         :return:
         """
-        
-        descriptors = src.functions.descriptors.Descriptors()
 
-        settings = self.Modelling(**descriptors.exc(node=['settings']))
-        metadata = self.Metadata(**descriptors.exc(node=['metadata']))
-        self.__logger.info(metadata)
-        self.__logger.info(settings._fields)
+        descriptors = src.functions.descriptors.Descriptors(
+            path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
 
-        register = src.functions.streams.Streams().api(
-            uri=metadata.url, header=0)
-        register.info()
-
-        return src.register.sampling.Sampling(settings=settings, metadata=metadata).exc(register=register)
+        sample = src.register.sample.Sample().exc(descriptors=descriptors)
+        self.__logger.info(sample)
