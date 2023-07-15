@@ -4,7 +4,7 @@ interface.py
 import logging
 
 import config
-import src.algorithms.descriptors
+import src.functions.descriptors
 import src.functions.streams
 import src.algorithms.sampling
 
@@ -35,7 +35,7 @@ class Interface:
         :return:
         """
         
-        descriptors = src.algorithms.descriptors.Descriptors()
+        descriptors = src.functions.descriptors.Descriptors()
 
         settings = self.Modelling(**descriptors.exc(node=['settings']))
         metadata = self.Metadata(**descriptors.exc(node=['metadata']))
