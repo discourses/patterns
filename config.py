@@ -19,6 +19,10 @@ class Config:
         typename='Metadata',
         field_names=['url', 'key', 'fields', 'labels'])
 
+    Source = collections.namedtuple(
+        typename='Source',
+        field_names=['url', 'index_from', 'index_to', 'index_zero_filling', 'ext', 'directory'])
+
     def __init__(self):
         """
         Constructor
