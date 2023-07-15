@@ -1,0 +1,8 @@
+tensorflow-directml-plugin==0.4.0.dev230202
+dask==2023.7.0
+pandas==2.0.3
+pytest==7.4.0
+coverage==7.2.7
+pylint==2.17.4
+pytest-cov==4.1.0
+flake8==6.0.0

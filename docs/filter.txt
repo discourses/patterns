@@ -1,0 +1,7 @@
+tensorflow-directml-plugin
+dask
+pytest
+coverage
+pylint
+pytest-cov
+flake8

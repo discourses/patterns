@@ -1,0 +1,38 @@
+metadata:
+  url: 'https://raw.githubusercontent.com/discourses/dermatology/master/augmentations/inventory.csv'
+  key: 'name'
+  fields: ['name', 'age_approx', 'anatom_site_general', 'sex', 'angle', 'drawn', 'image']
+  labels: ['AK', 'BCC', 'BKL', 'DF', 'MEL', 'NV', 'SCC', 'VASC']
+data:
+  source:
+    url: 'https://github.com/greyhypotheses/dermatology/raw/master/augmentations/images/{index}.zip'
+    index_from: 0
+    index_to: 195
+    index_zero_filling: 3
+    ext: '.zip'
+    directory: ['images']
+  features:
+    ext: '.png'
+    rows: 224
+    columns: 224
+    channels: 3
+    rotations: [0, 90, 180, 270]
+settings:
+  sample: True
+  replace: False
+  class_sample_size: 500
+  epochs: 60
+  features: ['url']
+  random_state: 5
+  minimum_class_instances: 2
+  batch_size: 32
+  train_size_initial: 0.685
+  train_size_evaluation: 0.50
+  early_stopping_patience: 5
+  model_checkpoints_directory: ['checkpoints']
+  error_matrix_variables: ['tn', 'fn', 'tp', 'fp']
+evaluating:
+  thresholds:
+    min: 0
+    max: 1.0
+    step: 0.05
