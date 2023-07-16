@@ -33,11 +33,11 @@ class Interface:
                             datefmt='%Y-%m-%d %H:%M:%S')
         self.__logger = logging.getLogger(__name__)
 
-        # Instances
-        self.__splitting = src.functions.splitting.Splitting()
-
         # Descriptors
         self.__settings, self.__metadata, self.__source = self.__descriptors()
+
+        # Instances
+        self.__splitting = src.functions.splitting.Splitting(random_state=self.__settings.random_state)
 
     def __descriptors(self):
         """
@@ -64,16 +64,18 @@ class Interface:
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
-        x_learn, x_evaluation, y_learn, y_evaluation = self.__splitting.exc(
+        training, evaluating = self.__splitting.exc(
             independent=sample['path'], dependent=sample[self.__metadata.labels],
-            train_size=self.__settings.train_size_initial, random_state=self.__settings.random_state,
-            stratify=sample[self.__metadata.labels])
+            train_size=self.__settings.train_size_initial, stratify=sample[self.__metadata.labels])
 
-        x_validate, x_test, y_validate, y_test = self.__splitting.exc(
-            independent=x_evaluation, dependent=y_evaluation,
-            train_size=self.__settings.train_size_initial, random_state=self.__settings.random_state,
-            stratify=y_evaluation)
+        validating, testing = self.__splitting.exc(
+            independent=evaluating['path'], dependent=evaluating[self.__metadata.labels],
+            train_size=self.__settings.train_size_evaluation, stratify=evaluating[self.__metadata.labels])
 
-        self.__logger.info(f'X, Y: {x_learn.shape}, {y_learn.shape}')
-        self.__logger.info(f'X, Y: {x_validate.shape}, {y_validate.shape}')
-        self.__logger.info(f'X, Y: {x_test.shape}, {y_test.shape}')
+        self.__logger.info(f'{training.shape}')
+        self.__logger.info(f'{validating.shape}')
+        self.__logger.info(f'{testing.shape}')
+
+        self.__logger.info(training.head())
+        self.__logger.info(validating.head())
+        self.__logger.info(testing.head())
