@@ -49,7 +49,7 @@ class Pipeline:
         # Hence
         return img
 
-    def __pairing(self, filename: str, observation: str = None):
+    def __doublet(self, filename: str, observation: str = None):
         """
         Create image & label pairs
 
@@ -59,9 +59,6 @@ class Pipeline:
         """
         img = tf.io.read_file(filename)
         img = self.__decoding(img)
-
-        if observation is None:
-            return img
 
         return img, observation
 
@@ -87,7 +84,7 @@ class Pipeline:
         # Hence
         # 'cache/.../log'
         dataset = tf.data.Dataset.from_tensor_slices(matrices)
-        dataset = dataset.map(self.__pairing, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+        dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.experimental.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
         dataset = dataset.repeat()
