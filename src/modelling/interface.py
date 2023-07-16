@@ -21,6 +21,7 @@ class Interface:
     Settings = config.Config().Settings
     Metadata = config.Config().Metadata
     Source = config.Config().Source
+    Attributes = config.Config().Attributes
 
     def __init__(self):
         """
@@ -34,7 +35,7 @@ class Interface:
         self.__logger = logging.getLogger(__name__)
 
         # Descriptors
-        self.__settings, self.__metadata, self.__source = self.__descriptors()
+        self.__settings, self.__metadata, self.__source, self.__attributes = self.__descriptors()
 
     def __descriptors(self):
         """
@@ -48,8 +49,9 @@ class Interface:
         settings = self.Settings(**descriptors.exc(node=['settings']))
         metadata = self.Metadata(**descriptors.exc(node=['metadata']))
         source = self.Source(**descriptors.exc(node=['data', 'source']))
+        attributes = self.Attributes(**descriptors.exc(node=['data', 'attributes']))
 
-        return settings, metadata, source
+        return settings, metadata, source, attributes
 
     def exc(self):
         """
