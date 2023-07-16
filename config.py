@@ -7,10 +7,12 @@ import collections
 class Config:
     """
     Class Config
+
+    Later, transfer the collections to a class named DataType; remember inheritance.
     """
 
     '''
-    The values of Settings, Metadata, & Source are defined in 
+    The values of Settings, Metadata, Source, & Attributes are defined in 
     descriptors/images.yml
     '''
     Settings = collections.namedtuple(
@@ -24,6 +26,9 @@ class Config:
 
     Source = collections.namedtuple(
         typename='Source', field_names=['url', 'index_from', 'index_to', 'index_zero_filling', 'ext', 'directory'])
+
+    Attributes = collections.namedtuple(
+        typename='Attributes', field_names=['ext', 'rows', 'columns', 'channels', 'rotations'])
 
     '''
     These are the metadata data frames of a prospective set of 
