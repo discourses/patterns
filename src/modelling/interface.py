@@ -6,10 +6,9 @@ import os
 
 import config
 import src.functions.descriptors
-import src.functions.splitting
 import src.functions.streams
-import src.register.sample
 import src.modelling.splits
+import src.register.sample
 
 
 class Interface:
@@ -37,9 +36,6 @@ class Interface:
         # Descriptors
         self.__settings, self.__metadata, self.__source = self.__descriptors()
 
-        # Instances
-        self.__splitting = src.functions.splitting.Splitting(random_state=self.__settings.random_state)
-
     def __descriptors(self):
         """
 
@@ -65,23 +61,7 @@ class Interface:
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
-        training, evaluating = self.__splitting.exc(
-            independent=sample['path'], dependent=sample[self.__metadata.labels],
-            train_size=self.__settings.train_size_initial, stratify=sample[self.__metadata.labels])
-
-        validating, testing = self.__splitting.exc(
-            independent=evaluating['path'], dependent=evaluating[self.__metadata.labels],
-            train_size=self.__settings.train_size_evaluation, stratify=evaluating[self.__metadata.labels])
-
-        self.__logger.info(f'{training.shape}')
-        self.__logger.info(f'{validating.shape}')
-        self.__logger.info(f'{testing.shape}')
-
-        self.__logger.info(training.head())
-        self.__logger.info(validating.head())
-        self.__logger.info(testing.head())
-
-        objects = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
-        self.__logger.info(objects.training.head())
-        self.__logger.info(objects.validating.head())
-        self.__logger.info(objects.testing.head())
+        partitions = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        self.__logger.info(partitions.training.shape)
+        self.__logger.info(partitions.validating.shape)
+        self.__logger.info(partitions.testing.shape)
