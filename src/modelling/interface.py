@@ -8,6 +8,7 @@ import config
 import src.functions.descriptors
 import src.functions.streams
 import src.modelling.splits
+import src.modelling.pipeline
 import src.register.sample
 
 
@@ -36,6 +37,10 @@ class Interface:
 
         # Descriptors
         self.__settings, self.__metadata, self.__source, self.__attributes = self.__descriptors()
+
+        # Pipeline Objects
+        self.__pipeline = src.modelling.pipeline.Pipeline(
+            attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
 
     def __descriptors(self):
         """
@@ -67,3 +72,9 @@ class Interface:
         self.__logger.info(partitions.training)
         self.__logger.info(partitions.validating)
         self.__logger.info(partitions.testing)
+
+        training = self.__pipeline.exc(data=partitions.training, testing=False)
+        validating = self.__pipeline.exc(data=partitions.validating, testing=False)
+        testing = self.__pipeline.exc(data=partitions.testing, testing=True)
+
+
