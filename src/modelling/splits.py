@@ -48,7 +48,7 @@ class Splits:
     def exc(self, sample: pd.DataFrame) -> Partitions:
         """
 
-        :param sample:
+        :param sample:  The metadata data frame that will be split into training/validating/testing
         :return:
         """
 
