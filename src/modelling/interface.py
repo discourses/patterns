@@ -9,6 +9,7 @@ import src.functions.descriptors
 import src.functions.splitting
 import src.functions.streams
 import src.register.sample
+import src.modelling.splits
 
 
 class Interface:
@@ -79,3 +80,8 @@ class Interface:
         self.__logger.info(training.head())
         self.__logger.info(validating.head())
         self.__logger.info(testing.head())
+
+        objects = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        self.__logger.info(objects.training.head())
+        self.__logger.info(objects.validating.head())
+        self.__logger.info(objects.testing.head())
