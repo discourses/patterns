@@ -11,7 +11,7 @@ class Config:
 
     Settings = collections.namedtuple(
         typename='Settings',
-        field_names=['sample', 'replace', 'class_sample_size', 'epochs', 'independent', 'random_state',
+        field_names=['sample', 'replace', 'class_sample_size', 'epochs', 'random_state',
                      'minimum_class_instances', 'batch_size', 'train_size_initial', 'train_size_evaluation',
                      'early_stopping_patience', 'model_checkpoints_directory', 'error_matrix_variables'])
 
