@@ -1,5 +1,9 @@
 <br>
 
+**Later**: A re-design of a few parts &rarr; inheritance & `super()`
+
+<br>
+
 ## Development Notes
 
 <br>
@@ -36,6 +40,7 @@ Always remember to upgrade pip before populating the environment
 ```shell
   pip install tensorflow-directml-plugin
   pip install "dask[complete]"
+  pip install -U scikit-learn
   pip install pytest coverage pylint pytest-cov flake8
 ```
 
@@ -62,6 +67,13 @@ additionally, in aid of code analysis
   python -m pylint --rcfile .pylintrc ...
 ```
 
+<br>
+<br>
+
+### References
+
+* [Python Package Index](https://pypi.org)
+* [pip](https://pip.pypa.io/en/stable/)
 
 
 <br>

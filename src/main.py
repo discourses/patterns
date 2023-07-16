@@ -4,23 +4,28 @@ main.py
 import logging
 import os
 import sys
+import tensorflow as tf
 
 
 def main():
     """
     Entry point
 
-    The machine has two GPU (graphics processing units) devices
-    devices = tf.config.list_physical_devices('GPU')
-    logger.info(devices)
-
     :return:
     """
 
     logger.info('Patterns')
 
+    # Devices; the machine has two GPU (graphics processing units) devices
+    tf.debugging.set_log_device_placement(True)
+    devices = tf.config.list_physical_devices('GPU')
+    try:
+        tf.config.set_visible_devices(devices[0], 'GPU')
+    except RuntimeError as err:
+        raise ValueError(err) from err
+
     # If True, download the online images ...
-    if download:
+    if DOWNLOAD:
         src.images.interface.Interface().exc()
 
     # Proceed
@@ -28,9 +33,6 @@ def main():
 
 
 if __name__ == '__main__':
-    """
-    Initially
-    """
 
     # Paths
     root = os.getcwd()
@@ -51,6 +53,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    download = False
+    DOWNLOAD = False
 
     main()

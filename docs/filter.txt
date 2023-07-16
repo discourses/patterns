@@ -1,5 +1,7 @@
 tensorflow-directml-plugin
 dask
+pandas
+scikit-learn
 pytest
 coverage
 pylint
