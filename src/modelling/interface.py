@@ -79,3 +79,5 @@ class Interface:
         self.__logger.info(training.element_spec)
         self.__logger.info(validating.element_spec)
         self.__logger.info(testing.element_spec)
+
+        self.__logger.info(type(training))
