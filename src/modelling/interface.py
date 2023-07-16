@@ -74,6 +74,6 @@ class Interface:
             train_size=self.__settings.train_size_initial, random_state=self.__settings.random_state,
             stratify=y_evaluation)
 
-        self.__logger.info(x_learn)
-        self.__logger.info(x_validate)
-        self.__logger.info(x_test)
+        self.__logger.info(f'X, Y: {x_learn.shape}, {y_learn.shape}')
+        self.__logger.info(f'X, Y: {x_validate.shape}, {y_validate.shape}')
+        self.__logger.info(f'X, Y: {x_test.shape}, {y_test.shape}')
