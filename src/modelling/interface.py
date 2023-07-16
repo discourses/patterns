@@ -58,7 +58,7 @@ class Interface:
         """
 
         sample = src.register.sample.Sample(
-            settings=self.__settings, metadata=self.__metadata, source=self.__metadata).exc()
+            settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
         x_learn, x_evaluation, y_learn, y_evaluation = self.__splitting.exc(
