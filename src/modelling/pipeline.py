@@ -1,13 +1,13 @@
 """
-transform.py
+pipeline.py
 """
 
 
-class Transform:
+class Pipeline:
     """
-    Class Transform
+    Class Pipeline
 
-    Transforms ...
+    
     """
 
     def __init__(self):
