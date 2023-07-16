@@ -65,7 +65,7 @@ class Pipeline:
 
         return img, observation
 
-    def exc(self, data: pd.DataFrame, testing: bool) -> tf.data.Dataset:
+    def exc(self, data: pd.DataFrame, testing: bool):
         """
         Create image delivery pipeline
 
