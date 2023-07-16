@@ -2,6 +2,8 @@ metadata:
   url: 'https://raw.githubusercontent.com/discourses/dermatology/master/augmentations/inventory.csv'
   key: 'name'
   fields: ['name', 'age_approx', 'anatom_site_general', 'sex', 'angle', 'drawn', 'image']
+  # Once local, extra field <path> stores the path strings of the images
+  path: 'path'
   labels: ['AK', 'BCC', 'BKL', 'DF', 'MEL', 'NV', 'SCC', 'VASC']
 data:
   source:
