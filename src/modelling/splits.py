@@ -58,4 +58,4 @@ class Splits:
         validating, testing = self.__splits(
             data=evaluating, train_size=self.__settings.train_size_evaluation)
 
-        self.Partitions(training=training, validating=validating, testing=testing)
+        return self.Partitions(training=training, validating=validating, testing=testing)
