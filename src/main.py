@@ -11,14 +11,18 @@ def main():
     """
     Entry point
 
-    The machine has two GPU (graphics processing units) devices
-    devices = tf.config.list_physical_devices('GPU')
-    logger.info(devices)
-
     :return:
     """
 
     logger.info('Patterns')
+
+    # Devices; the machine has two GPU (graphics processing units) devices
+    tf.debugging.set_log_device_placement(True)
+    devices = tf.config.list_physical_devices('GPU')
+    try:
+        tf.config.set_visible_devices(devices[0], 'GPU')
+    except RuntimeError as err:
+        raise ValueError(err) from err
 
     # If True, download the online images ...
     if DOWNLOAD:
@@ -37,14 +41,6 @@ if __name__ == '__main__':
 
     # Threads
     os.environ['NUMEXPR_MAX_THREADS'] = '13'
-
-    # Devices
-    tf.debugging.set_log_device_placement(True)
-    GPU = tf.config.list_physical_devices('GPU')
-    try:
-        tf.config.set_visible_devices(GPU[0], 'GPU')
-    except RuntimeError as err:
-        raise ValueError(err) from err
 
     # Logging
     logging.basicConfig(level=logging.INFO,
