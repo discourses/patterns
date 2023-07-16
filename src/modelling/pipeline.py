@@ -65,20 +65,20 @@ class Pipeline:
         else:
             return img, observation
 
-    def exc(self, data: pd.DataFrame, predicting: bool):
+    def exc(self, data: pd.DataFrame, testing: bool):
         """
         Create image delivery pipeline
 
         :param data: The metadata table of the images
-        :param predicting: Predicting?
+        :param testing: Testing?
         :return:
         """
 
         # The names, local uniform resource identifiers, of the image files
         filenames = data[self.__metadata.path].values
 
-        # During prediction exercises the input data frame will not, should not, include ground truth data
-        if predicting:
+        # Whilst testing, serving, the input tensor will not, should not, include ground truth data
+        if testing:
             matrices = filenames
         else:
             observations = data[self.__metadata.labels].values
