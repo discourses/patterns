@@ -52,7 +52,7 @@ class Sample:
         return src.register.sampling.Sampling(
             settings=self.__settings, metadata=self.__metadata).exc(register=register)
 
-    def __restructure(self, register: pd.DataFrame) -> pd.DataFrame:
+    def __append_paths(self, register: pd.DataFrame) -> pd.DataFrame:
         """
 
         :param register:
@@ -60,8 +60,8 @@ class Sample:
         """
 
         paths = glob.glob(pathname=os.path.join(os.getcwd(), *self.__source.directory, '*.png'))
-        frame = pd.DataFrame(data={'path': paths})
-        frame.loc[:, 'name'] = frame.copy()['path'].apply(lambda x: os.path.split(x)[1])
+        frame = pd.DataFrame(data=paths, columns=[self.__metadata.path])
+        frame.loc[:, 'name'] = frame.copy()[self.__metadata.path].apply(lambda x: os.path.split(x)[1])
 
         frame = frame.copy().merge(register, how='inner', on='name')
 
@@ -75,6 +75,6 @@ class Sample:
 
         register = self.__register()
         register = self.__sample(register=register.copy())
-        register = self.__restructure(register=register.copy())
+        register = self.__append_paths(register=register.copy())
 
         return register
