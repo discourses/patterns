@@ -20,7 +20,7 @@ class Config:
                      'early_stopping_patience', 'model_checkpoints_directory', 'error_matrix_variables'])
 
     Metadata = collections.namedtuple(
-        typename='Metadata', field_names=['url', 'key', 'fields', 'labels'])
+        typename='Metadata', field_names=['url', 'key', 'fields', 'path', 'labels'])
 
     Source = collections.namedtuple(
         typename='Source', field_names=['url', 'index_from', 'index_to', 'index_zero_filling', 'ext', 'directory'])
