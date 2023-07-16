@@ -4,6 +4,7 @@ main.py
 import logging
 import os
 import sys
+import tensorflow as tf
 
 
 def main():
@@ -39,7 +40,14 @@ if __name__ == '__main__':
 
     # Threads
     os.environ['NUMEXPR_MAX_THREADS'] = '13'
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+
+    # Devices
+    tf.debugging.set_log_device_placement(True)
+    GPU = tf.config.list_physical_devices('GPU')
+    try:
+        tf.config.set_visible_devices(GPU[0], 'GPU')
+    except RuntimeError as err:
+        raise ValueError(err)
 
     # Logging
     logging.basicConfig(level=logging.INFO,
