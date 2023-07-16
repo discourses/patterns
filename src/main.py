@@ -39,6 +39,7 @@ if __name__ == '__main__':
 
     # Threads
     os.environ['NUMEXPR_MAX_THREADS'] = '13'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
     # Logging
     logging.basicConfig(level=logging.INFO,
