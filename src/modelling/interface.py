@@ -4,12 +4,11 @@ interface.py
 import logging
 import os
 
+import config
 import src.functions.descriptors
+import src.functions.splitting
 import src.functions.streams
 import src.register.sample
-import src.functions.splitting
-
-import config
 
 
 class Interface:
@@ -41,6 +40,10 @@ class Interface:
         self.__settings, self.__metadata, self.__source = self.__descriptors()
 
     def __descriptors(self):
+        """
+
+        :return:
+        """
 
         descriptors = src.functions.descriptors.Descriptors(
             path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
