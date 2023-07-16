@@ -17,6 +17,19 @@ class Splitting:
 
         self.__random_state = random_state
 
+    @staticmethod
+    def __type(structure) -> pd.DataFrame:
+        """
+
+        :param structure: A DataFrame or Series, if the latter it is converted to a DataFrame
+        :return:
+        """
+
+        if isinstance(structure, pd.Series):
+            return structure.to_frame()
+        else:
+            return structure
+
     def __splitting(self, independent: pd.DataFrame, dependent: pd.DataFrame,
                     train_size: float, stratify=None) -> (pd.DataFrame, pd.DataFrame):
         """
@@ -35,8 +48,8 @@ class Splitting:
         x_training, x_testing, y_training, y_testing = sms.train_test_split(
             independent, dependent, train_size=train_size, random_state=self.__random_state, stratify=stratify)
 
-        training = x_training.join(y_training)
-        testing = x_testing.join(y_testing)
+        training = self.__type(x_training).join(self.__type(y_training))
+        testing = self.__type(x_testing).join(self.__type(y_testing))
 
         return training, testing
 
