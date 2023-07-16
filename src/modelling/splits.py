@@ -29,6 +29,7 @@ class Splits:
         # Data Classes
         self.__settings = settings
         self.__metadata = metadata
+        self.__features = metadata.fields + [metadata.path]
 
         # Instances
         self.__splitting = src.functions.splitting.Splitting(random_state=self.__settings.random_state)
@@ -42,7 +43,7 @@ class Splits:
         """
 
         return self.__splitting.exc(
-            independent=data['path'], dependent=data[self.__metadata.labels],
+            independent=data[self.__features], dependent=data[self.__metadata.labels],
             train_size=train_size, stratify=data[self.__metadata.labels])
 
     def exc(self, sample: pd.DataFrame) -> Partitions:
