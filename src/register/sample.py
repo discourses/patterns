@@ -21,15 +21,17 @@ class Sample:
     Metadata = config.Config().Metadata
     Source = config.Config().Source
 
-    def __init__(self, descriptors: src.functions.descriptors.Descriptors):
+    def __init__(self, settings: Settings, metadata: Metadata, source: Source):
         """
 
-        :param descriptors:
+        :param settings:
+        :param metadata:
+        :param source:
         """
 
-        self.__settings = self.Settings(**descriptors.exc(node=['settings']))
-        self.__metadata = self.Metadata(**descriptors.exc(node=['metadata']))
-        self.__source = self.Source(**descriptors.exc(node=['data', 'source']))
+        self.__settings = settings
+        self.__metadata = metadata
+        self.__source = source
 
     def __register(self) -> pd.DataFrame:
         """
