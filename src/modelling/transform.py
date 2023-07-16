@@ -1,13 +1,13 @@
 """
-elements.py
+transform.py
 """
 
 
 class Transform:
     """
-    Class Elements
+    Class Transform
 
-    Creates TensorFlow generator elements
+    Transforms ...
     """
 
     def __init__(self):
