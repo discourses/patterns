@@ -1,6 +1,7 @@
 """
 pipeline.py
 """
+
 import pandas as pd
 import tensorflow as tf
 
@@ -49,7 +50,19 @@ class Pipeline:
         # Hence
         return img
 
-    def __doublet(self, filename: str, observation: str = None):
+    def __single(self, filename: str):
+        """
+
+        :param filename:
+        :return:
+        """
+
+        img = tf.io.read_file(filename)
+        img = self.__decoding(img)
+
+        return img
+
+    def __doublet(self, filename: str, observation: str):
         """
         Create image & label pairs
 
@@ -84,7 +97,10 @@ class Pipeline:
         # Hence
         # 'cache/.../log'
         dataset = tf.data.Dataset.from_tensor_slices(matrices)
-        dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+        if testing:
+            dataset = dataset.map(self.__single, num_parallel_calls=tf.data.AUTOTUNE)
+        else:
+            dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
         dataset = dataset.repeat()
