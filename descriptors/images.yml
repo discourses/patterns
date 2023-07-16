@@ -13,7 +13,7 @@ data:
     index_zero_filling: 3
     ext: '.zip'
     directory: ['images']
-  features:
+  attributes:
     ext: '.png'
     rows: 224
     columns: 224
