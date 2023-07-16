@@ -21,7 +21,7 @@ def main():
     logger.info('Patterns')
 
     # If True, download the online images ...
-    if download:
+    if DOWNLOAD:
         src.images.interface.Interface().exc()
 
     # Proceed
@@ -29,9 +29,6 @@ def main():
 
 
 if __name__ == '__main__':
-    """
-    Initially
-    """
 
     # Paths
     root = os.getcwd()
@@ -47,7 +44,7 @@ if __name__ == '__main__':
     try:
         tf.config.set_visible_devices(GPU[0], 'GPU')
     except RuntimeError as err:
-        raise ValueError(err)
+        raise ValueError(err) from err
 
     # Logging
     logging.basicConfig(level=logging.INFO,
@@ -60,6 +57,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    download = False
+    DOWNLOAD = False
 
     main()
