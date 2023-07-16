@@ -62,6 +62,13 @@ additionally, in aid of code analysis
   python -m pylint --rcfile .pylintrc ...
 ```
 
+<br>
+<br>
+
+### References
+
+* [Python Package Index](https://pypi.org)
+* [pip](https://pip.pypa.io/en/stable/)
 
 
 <br>
