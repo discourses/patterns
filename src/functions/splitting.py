@@ -1,12 +1,18 @@
+"""
+splitting.py
+"""
 import pandas as pd
 import sklearn.model_selection as sms
 
 
 class Splitting:
+    """
+    Class Splitting
+    """
 
     def __init__(self):
         """
-
+        Constructor
         """
 
     @staticmethod
