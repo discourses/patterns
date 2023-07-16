@@ -26,9 +26,9 @@ class Splitting:
         """
 
         if isinstance(structure, pd.Series):
-            return structure.to_frame()
-        else:
-            return structure
+            structure = structure.copy().to_frame()
+
+        return structure
 
     def __splitting(self, independent: pd.DataFrame, dependent: pd.DataFrame,
                     train_size: float, stratify=None) -> (pd.DataFrame, pd.DataFrame):
