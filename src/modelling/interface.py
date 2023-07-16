@@ -76,5 +76,6 @@ class Interface:
         training = self.__pipeline.exc(data=partitions.training, testing=False)
         validating = self.__pipeline.exc(data=partitions.validating, testing=False)
         testing = self.__pipeline.exc(data=partitions.testing, testing=True)
-
-
+        self.__logger.info(training.element_spec)
+        self.__logger.info(validating.element_spec)
+        self.__logger.info(testing.element_spec)
