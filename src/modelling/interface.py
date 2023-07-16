@@ -62,6 +62,6 @@ class Interface:
         self.__logger.info(sample)
 
         partitions = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
-        self.__logger.info(partitions.training.shape)
-        self.__logger.info(partitions.validating.shape)
-        self.__logger.info(partitions.testing.shape)
+        self.__logger.info(partitions.training)
+        self.__logger.info(partitions.validating)
+        self.__logger.info(partitions.testing)
