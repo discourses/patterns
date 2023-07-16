@@ -62,8 +62,8 @@ class Pipeline:
 
         if observation is None:
             return img
-        else:
-            return img, observation
+
+        return img, observation
 
     def exc(self, data: pd.DataFrame, testing: bool):
         """
