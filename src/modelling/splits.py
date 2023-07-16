@@ -32,7 +32,7 @@ class Splits:
 
         # Instances
         self.__splitting = src.functions.splitting.Splitting(random_state=self.__settings.random_state)
-        
+
     def __splits(self, data: pd.DataFrame, train_size: float) -> (pd.DataFrame, pd.DataFrame):
         """
 
