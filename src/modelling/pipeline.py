@@ -32,7 +32,7 @@ class Pipeline:
         self.__metadata = metadata
         self.__settings = settings
 
-    def __decoding(self, img):
+    def __decoding(self, img) -> tf.Tensor:
         """
         Image decoder
 
@@ -65,7 +65,7 @@ class Pipeline:
 
         return img, observation
 
-    def exc(self, data: pd.DataFrame, testing: bool):
+    def exc(self, data: pd.DataFrame, testing: bool) -> tf.data.Dataset:
         """
         Create image delivery pipeline
 
