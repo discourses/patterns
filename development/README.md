@@ -1,5 +1,9 @@
 <br>
 
+**Later**: A re-design of a few parts &rarr; inheritance & `super()`
+
+<br>
+
 ## Development Notes
 
 <br>
