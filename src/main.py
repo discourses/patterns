@@ -5,7 +5,6 @@ import logging
 import os
 import sys
 import tensorflow as tf
-import tensorrt as trt
 
 
 def main():
@@ -17,8 +16,6 @@ def main():
 
     logger.info('Patterns')
 
-    # Inspecting
-    logger.info(trt.__version__)
 
     # Devices; the machine has two GPU (graphics processing units) devices
     tf.debugging.set_log_device_placement(True)
