@@ -33,7 +33,7 @@ class Interface:
         :return:
         """
 
-        strings = [self.__endpoint.format(name=str(number).zfill(3)) for number in np.arange(0, 196)]
+        strings = [self.__endpoint.format(name=str(number).zfill(3)) for number in np.arange(0, 16)]
         self.__logger.info(strings)
 
         messages = src.images.read.Read().exc(strings=strings)
