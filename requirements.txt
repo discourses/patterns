@@ -1,5 +1,4 @@
 tensorflow==2.12.1
-tensorrt==8.6.1
 dask[complete]==2023.7.0
 pandas>=2.0.*
 numpy>=1.24.*
