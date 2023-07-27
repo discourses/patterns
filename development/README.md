@@ -70,6 +70,13 @@ additionally, in aid of code analysis
 <br>
 <br>
 
+### Snippets
+
+Excluding `tensorflow-directml-plugin==0.4.0.dev230202` whilst trying ...
+
+<br>
+<br>
+
 ### References
 
 * [Python Package Index](https://pypi.org)
