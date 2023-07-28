@@ -50,7 +50,7 @@ class Pipeline:
         # Hence
         return img
 
-    def single(self, filename: str):
+    def __single(self, filename: str):
         """
 
         :param filename:
@@ -62,7 +62,7 @@ class Pipeline:
 
         return img
 
-    def doublet(self, filename: str, observation: str):
+    def __doublet(self, filename: str, observation: str):
         """
         Create image & label pairs
 
@@ -98,9 +98,9 @@ class Pipeline:
         # 'cache/.../log'
         dataset = tf.data.Dataset.from_tensor_slices(matrices)
         if testing:
-            dataset = dataset.map(self.single, num_parallel_calls=tf.data.AUTOTUNE)
+            dataset = dataset.map(self.__single, num_parallel_calls=tf.data.AUTOTUNE)
         else:
-            dataset = dataset.map(self.doublet, num_parallel_calls=tf.data.AUTOTUNE)
+            dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
         dataset = dataset.repeat()
