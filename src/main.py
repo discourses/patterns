@@ -16,6 +16,7 @@ def main():
 
     logger.info('Patterns')
 
+
     # Devices; the machine has two GPU (graphics processing units) devices
     tf.debugging.set_log_device_placement(True)
     devices = tf.config.list_physical_devices('GPU')
@@ -53,6 +54,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    DOWNLOAD = False
+    DOWNLOAD = True
 
     main()
