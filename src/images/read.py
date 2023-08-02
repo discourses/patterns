@@ -30,7 +30,7 @@ class Read:
 
         return self.__dearchive.external(url=url)
 
-    def exc(self, strings: list[str]) -> list:
+    def exc(self, strings: list) -> list:
         """
 
         :param strings:
