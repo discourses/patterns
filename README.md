@@ -26,7 +26,7 @@ docker build -t tensors .
 <br>
 
 ```bash
-  docker run -i -t -w /app --mount type=bind,src="$(pwd)",target=/app tensors
+docker run -i -t -w /app --mount type=bind,src="$(pwd)",target=/app tensors
 ```
 
 <br>
