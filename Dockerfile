@@ -2,7 +2,7 @@
 FROM tensorflow/tensorflow:latest-gpu
 
 # Updating the packages of the underlying operating system, and addressing privileges
-RUN apt update && apt -y install sudo
+RUN apt update && apt -y install sudo && apt -y install vim
 
 # ... privileges
 # https://linux.die.net/man/8/chpasswd
@@ -13,7 +13,7 @@ USER algebra
 
 # .local/bin for installations
 RUN echo $PATH
-RUN echo "export PATH=$PATH:/home/algebra/.local/bin" >> ~/.bashrc
+RUN echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
 
 # After addressing privileges, and .local/bin for installations, proceed with
 # underlying image enhancement
