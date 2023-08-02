@@ -45,6 +45,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    DOWNLOAD = True
+    DOWNLOAD = False
 
     main()
