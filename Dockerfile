@@ -2,7 +2,7 @@
 FROM tensorflow/tensorflow:latest-gpu
 
 # Updating the packages of the underlying operating system, and addressing privileges
-RUN apt update && apt -y install sudo && apt -y install vim
+RUN apt update && apt upgrade && apt -y install sudo && apt -y install vim
 
 # ... privileges
 # https://linux.die.net/man/8/chpasswd
