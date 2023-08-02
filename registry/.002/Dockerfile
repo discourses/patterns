@@ -1,5 +1,5 @@
 # TensorFlow
-FROM tensorflow/build:latest-python3.11
+FROM tensorflow/build:2.13-python3.11
 
 # Finally
-CMD [ "/bin/bash" ] 
+CMD [ "/bin/bash" ]
