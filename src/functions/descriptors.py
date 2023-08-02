@@ -32,7 +32,7 @@ class Descriptors:
             except yaml.YAMLError as err:
                 raise ValueError(err) from err
 
-    def __excerpt(self, node: list[str]) -> dict:
+    def __excerpt(self, node: list) -> dict:
         """
 
         :param node: A node of interest.
