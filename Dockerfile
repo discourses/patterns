@@ -21,6 +21,7 @@ RUN python -m pip install --upgrade pip
 
 # Set application directory <app>
 WORKDIR /app
+RUN mkdir -p /app/images
 
 # This command copies requirements.txt into /app
 COPY ./requirements.txt .
