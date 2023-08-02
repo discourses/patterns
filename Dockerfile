@@ -11,4 +11,12 @@ RUN useradd -m algebra && echo "algebra:algebra" | chpasswd && adduser algebra s
 # Hence, the default user is
 USER algebra
 
+# .local/bin
+RUN echo $PATH
+RUN echo "export PATH=$PATH:/home/algebra/.local/bin" >> ~/.bashrc
+
+# Requirements
+
+
+# Finally
 CMD [ "/bin/bash" ] 
