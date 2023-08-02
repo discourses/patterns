@@ -47,7 +47,7 @@ class Descriptors:
 
         return dictionary
 
-    def exc(self, node: list[str]) -> dict:
+    def exc(self, node: list) -> dict:
         """
 
         :param node: A node of interest vis-à-vis descriptors
