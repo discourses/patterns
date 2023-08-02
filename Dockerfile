@@ -12,6 +12,10 @@ RUN useradd -m algebra && echo "algebra:algebra" | chpasswd && adduser algebra s
 # Hence, the default user is
 USER algebra
 
+# In case
+RUN mkdir -p ${HOME}/etc && touch ${HOME}/etc/ld.so.cache
+RUN ldconfig -C ${HOME}/etc/ld.so.cache
+
 # .local/bin for installations
 RUN echo $PATH
 RUN echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
