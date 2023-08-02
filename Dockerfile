@@ -11,12 +11,12 @@ RUN useradd -m algebra && echo "algebra:algebra" | chpasswd && adduser algebra s
 # Hence, the default user is
 USER algebra
 
-# .local/bin
+# .local/bin for installations
 RUN echo $PATH
 RUN echo "export PATH=$PATH:/home/algebra/.local/bin" >> ~/.bashrc
 
-# After addressing privileges, and .local/bin for installations, we may 
-# enhance the underlying image
+# After addressing privileges, and .local/bin for installations, proceed with
+# underlying image enhancement
 RUN python -m pip install --upgrade pip
 
 # Set application directory <app>
