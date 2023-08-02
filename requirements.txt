@@ -1,3 +1,4 @@
+tensorflow==2.13.*
 dask[complete]>=2023.5.0
 pandas>=2.0.*
 numpy>=1.24.*
