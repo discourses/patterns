@@ -50,6 +50,7 @@ class Pipeline:
         # Hence
         return img
 
+    @tf.autograph.experimental.do_not_convert
     def __single(self, filename: str):
         """
 
@@ -62,6 +63,7 @@ class Pipeline:
 
         return img
 
+    @tf.autograph.experimental.do_not_convert
     def __doublet(self, filename: str, observation: str):
         """
         Create image & label pairs
