@@ -63,7 +63,7 @@ class Pipeline:
         img = self.__decoding(img)
 
         return img, observation
-    
+
     @tf.autograph.experimental.do_not_convert
     def __single(self, filename: str):
         """
@@ -87,7 +87,7 @@ class Pipeline:
         """
 
         # The names, local uniform resource identifiers, of the image files
-        filenames = data[self.__metadata.path].values        
+        filenames = data[self.__metadata.path].values
 
         # Whilst testing, serving, the input tensor will not, should not, include ground truth data
         if testing:
