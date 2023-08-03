@@ -9,6 +9,7 @@ import src.functions.descriptors
 import src.functions.streams
 import src.modelling.splits
 import src.modelling.pipeline
+import src.modelling.reference
 import src.register.sample
 
 
@@ -40,6 +41,8 @@ class Interface:
 
         # Pipeline Objects
         self.__pipeline = src.modelling.pipeline.Pipeline(
+            attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
+        self.__reference = src.modelling.reference.Reference(
             attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
 
     def __descriptors(self):
@@ -73,9 +76,9 @@ class Interface:
         self.__logger.info(partitions.validating)
         self.__logger.info(partitions.testing)
 
-        training = self.__pipeline.exc(data=partitions.training, testing=False)
-        validating = self.__pipeline.exc(data=partitions.validating, testing=False)
-        testing = self.__pipeline.exc(data=partitions.testing, testing=True)
+        training = self.__pipeline.exc(data=partitions.training)
+        validating = self.__pipeline.exc(data=partitions.validating)
+        testing = self.__reference.exc(data=partitions.testing)
         self.__logger.info(training.element_spec)
         self.__logger.info(validating.element_spec)
         self.__logger.info(testing.element_spec)
