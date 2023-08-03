@@ -18,3 +18,6 @@ RUN wget -P Downloads https://repo.anaconda.com/miniconda/Miniconda3-py311_23.5.
   source /etc/profile && \
   conda init && \
   conda config --set auto_activate_base false
+
+# Finally
+CMD [ "/bin/bash" ] 
