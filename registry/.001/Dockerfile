@@ -1,4 +1,4 @@
-# TensorFlow
+# TensorFlow & Computing via Graphics Processing Units
 FROM tensorflow/tensorflow:latest-gpu
 
 # Updating the packages of the underlying operating system, and addressing privileges
