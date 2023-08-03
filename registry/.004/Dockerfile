@@ -22,7 +22,7 @@ RUN useradd -m algebra && usermod -aG sudo algebra
 
 # Hence, the default user is
 USER algebra
-WORKDIR ${HOME}
 
 # Finally
-CMD [ "/bin/bash" ] 
+WORKDIR /home/algebra
+CMD [ "/bin/bash"] 
