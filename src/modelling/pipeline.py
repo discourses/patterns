@@ -63,12 +63,26 @@ class Pipeline:
         img = self.__decoding(img)
 
         return img, observation
+    
+    @tf.autograph.experimental.do_not_convert
+    def __single(self, filename: str):
+        """
 
-    def exc(self, data: pd.DataFrame):
+        :param filename:
+        :return:
+        """
+
+        img = tf.io.read_file(filename)
+        img = self.__decoding(img)
+
+        return img
+
+    def exc(self, data: pd.DataFrame, testing: bool):
         """
         Create image delivery pipeline
 
         :param data: The metadata table of the images
+        :param testing: Testing?
         :return:
         """
 
@@ -76,16 +90,23 @@ class Pipeline:
         filenames = data[self.__metadata.path].values        
 
         # Whilst testing, serving, the input tensor will not, should not, include ground truth data
-        observations = data[self.__metadata.labels].values
-        matrices = (filenames, observations)
+        if testing:
+            matrices = filenames
+        else:
+            observations = data[self.__metadata.labels].values
+            matrices = (filenames, observations)
 
         # Hence
         # 'cache/.../log'
         dataset = tf.data.Dataset.from_tensor_slices(matrices)
-        dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
+        if testing:
+            dataset = dataset.map(self.__single, num_parallel_calls=tf.data.AUTOTUNE)
+        else:
+            dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
-        dataset = dataset.repeat()
+        if not testing:
+            dataset = dataset.repeat()
         dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
         return dataset
