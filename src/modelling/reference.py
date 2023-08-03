@@ -1,6 +1,7 @@
 """
 reference.py
 """
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 
@@ -62,7 +63,7 @@ class Reference:
     def exc(self, data: pd.DataFrame):
         
         # The names, local uniform resource identifiers, of the image files
-        filenames = data[self.__metadata.path].values    
+        filenames = data[self.__metadata.path].array
 
         dataset = tf.data.Dataset.from_tensor_slices(filenames)
         dataset = dataset.map(self.__single, num_parallel_calls=tf.data.AUTOTUNE)
