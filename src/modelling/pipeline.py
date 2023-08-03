@@ -51,19 +51,6 @@ class Pipeline:
         return img
 
     @tf.autograph.experimental.do_not_convert
-    def __single(self, filename: str):
-        """
-
-        :param filename:
-        :return:
-        """
-
-        img = tf.io.read_file(filename)
-        img = self.__decoding(img)
-
-        return img
-
-    @tf.autograph.experimental.do_not_convert
     def __doublet(self, filename: str, observation: str):
         """
         Create image & label pairs
@@ -77,32 +64,25 @@ class Pipeline:
 
         return img, observation
 
-    def exc(self, data: pd.DataFrame, testing: bool):
+    def exc(self, data: pd.DataFrame):
         """
         Create image delivery pipeline
 
         :param data: The metadata table of the images
-        :param testing: Testing?
         :return:
         """
 
         # The names, local uniform resource identifiers, of the image files
-        filenames = data[self.__metadata.path].values
+        filenames = data[self.__metadata.path].values        
 
         # Whilst testing, serving, the input tensor will not, should not, include ground truth data
-        if testing:
-            matrices = filenames
-        else:
-            observations = data[self.__metadata.labels].values
-            matrices = (filenames, observations)
+        observations = data[self.__metadata.labels].values
+        matrices = (filenames, observations)
 
         # Hence
         # 'cache/.../log'
         dataset = tf.data.Dataset.from_tensor_slices(matrices)
-        if testing:
-            dataset = dataset.map(self.__single, num_parallel_calls=tf.data.AUTOTUNE)
-        else:
-            dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
+        dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
         dataset = dataset.repeat()
