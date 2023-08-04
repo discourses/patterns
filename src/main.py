@@ -16,15 +16,6 @@ def main():
 
     logger.info('Patterns')
 
-
-    # Devices; the machine has two GPU (graphics processing units) devices
-    tf.debugging.set_log_device_placement(True)
-    devices = tf.config.list_physical_devices('GPU')
-    try:
-        tf.config.set_visible_devices(devices[0], 'GPU')
-    except RuntimeError as err:
-        raise ValueError(err) from err
-
     # If True, download the online images ...
     if DOWNLOAD:
         src.images.interface.Interface().exc()
@@ -54,6 +45,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    DOWNLOAD = True
+    DOWNLOAD = False
 
     main()

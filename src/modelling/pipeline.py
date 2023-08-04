@@ -50,18 +50,7 @@ class Pipeline:
         # Hence
         return img
 
-    def __single(self, filename: str):
-        """
-
-        :param filename:
-        :return:
-        """
-
-        img = tf.io.read_file(filename)
-        img = self.__decoding(img)
-
-        return img
-
+    @tf.autograph.experimental.do_not_convert
     def __doublet(self, filename: str, observation: str):
         """
         Create image & label pairs
@@ -74,6 +63,19 @@ class Pipeline:
         img = self.__decoding(img)
 
         return img, observation
+
+    @tf.autograph.experimental.do_not_convert
+    def __single(self, filename: str):
+        """
+
+        :param filename:
+        :return:
+        """
+
+        img = tf.io.read_file(filename)
+        img = self.__decoding(img)
+
+        return img
 
     def exc(self, data: pd.DataFrame, testing: bool):
         """
@@ -103,7 +105,8 @@ class Pipeline:
             dataset = dataset.map(self.__doublet, num_parallel_calls=tf.data.AUTOTUNE)
         dataset = dataset.cache()
         dataset = dataset.batch(batch_size=self.__settings.batch_size, drop_remainder=False)
-        dataset = dataset.repeat()
+        if not testing:
+            dataset = dataset.repeat()
         dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
         return dataset
