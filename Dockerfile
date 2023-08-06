@@ -10,6 +10,7 @@ RUN add-apt-repository ppa:git-core/ppa && apt update && apt -y install sudo && 
   useradd -m algebra && echo "algebra:algebra" | chpasswd && \ 
   adduser algebra sudo
 
+
 # Hence, the default user is
 USER algebra
 
