@@ -11,7 +11,7 @@ RUN add-apt-repository ppa:git-core/ppa && apt update && apt -y install sudo && 
   adduser algebra sudo
 
 
-# Hence, the default user is
+# Hence, setting the default user ...
 USER algebra
 
 
