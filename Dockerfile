@@ -2,6 +2,10 @@
 FROM tensorflow/tensorflow:latest-gpu
 
 
+# Environment
+SHELL [ "/bin/bash", "-c" ]
+
+
 # Updating the packages of the underlying operating system, and addressing privileges
 # ... apt install nvidia-modprobe
 # ... privileges -> https://linux.die.net/man/8/chpasswd
