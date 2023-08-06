@@ -3,12 +3,11 @@ FROM tensorflow/tensorflow:latest-gpu
 
 # Updating the packages of the underlying operating system, and addressing privileges
 # ... apt install nvidia-modprobe
-RUN add-apt-repository ppa:git-core/ppa
-RUN apt update && apt -y install sudo && apt -y install vim && apt -y install git-all
-
-# ... privileges
-# https://linux.die.net/man/8/chpasswd
-RUN useradd -m algebra && echo "algebra:algebra" | chpasswd && adduser algebra sudo
+# ... privileges -> https://linux.die.net/man/8/chpasswd
+RUN add-apt-repository ppa:git-core/ppa && apt update && apt -y install sudo && \
+  apt -y install vim && apt -y install git-all && \ 
+  useradd -m algebra && echo "algebra:algebra" | chpasswd && \ 
+  adduser algebra sudo
 
 # Hence, the default user is
 USER algebra
