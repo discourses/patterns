@@ -16,6 +16,8 @@ def main():
 
     logger.info('Patterns')
 
+    logger.info(tf.config.list_physical_devices(device_type='GPU'))
+
     # If True, download the online images ...
     if DOWNLOAD:
         src.images.interface.Interface().exc()
@@ -30,6 +32,7 @@ if __name__ == '__main__':
     root = os.getcwd()
     sys.path.append(root)
     sys.path.append(os.path.join(root, 'src'))
+    os.environ['CUDA_VISIBLE_DEVICES']='1'
 
     # Threads
     os.environ['NUMEXPR_MAX_THREADS'] = '13'
