@@ -7,12 +7,15 @@ import shutil
 
 
 class Extraneous:
+    """
+    Extraneous
+    """
 
     def __init__(self) -> None:
         """
         
         """
-        
+
         # Logging
         logging.basicConfig(level=logging.INFO,
                             format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
@@ -28,7 +31,7 @@ class Extraneous:
             if path.is_dir():
                 try:
                     shutil.rmtree(path=path, ignore_errors=True)
-                except PermissionError:
-                    raise Exception(f'Delete Permission Denied: {path}')
-                else:
-                    self.__logger.info(f'Deleted: {path}')
+                except PermissionError as err:
+                    raise (f'Delete Permission Denied: {path}') from err
+
+                self.__logger.info(f'Deleted: {path}')
