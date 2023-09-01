@@ -4,8 +4,8 @@ main.py
 import logging
 import os
 import sys
+
 import tensorflow as tf
-import src.functions.extraneous
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
 
     logger.info('Patterns')
 
-    logger.info(tf.config.list_physical_devices(device_type='GPU'))
+    logger.info(tf.config.list_physical_devices())
 
     # If True, download the online images ...
     if DOWNLOAD:
@@ -36,7 +36,9 @@ if __name__ == '__main__':
     root = os.getcwd()
     sys.path.append(root)
     sys.path.append(os.path.join(root, 'src'))
-    os.environ['CUDA_VISIBLE_DEVICES']='1'
+
+    os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+    os.environ['CUDA_VISIBLE_DEVICES']='0'
 
     # Threads
     os.environ['NUMEXPR_MAX_THREADS'] = '13'
@@ -48,6 +50,7 @@ if __name__ == '__main__':
     logger = logging.getLogger(__name__)
 
     # Classes
+    import src.functions.extraneous
     import src.images.interface
     import src.modelling.interface
 
