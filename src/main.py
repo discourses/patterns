@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 import tensorflow as tf
+import src.functions.extraneous
 
 
 def main():
@@ -24,6 +25,9 @@ def main():
 
     # Proceed
     src.modelling.interface.Interface().exc()
+
+    # Delete __pycache__ directories
+    src.functions.extraneous.Extraneous().exc()
 
 
 if __name__ == '__main__':
