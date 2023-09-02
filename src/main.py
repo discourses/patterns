@@ -17,7 +17,7 @@ def main():
 
     logger.info('Patterns')
 
-    logger.info(tf.config.list_physical_devices())
+    logger.info(tf.config.list_physical_devices(device_type='GPU'))
 
     # If True, download the online images ...
     if DOWNLOAD:
