@@ -15,6 +15,7 @@ dependencies:
       - numpy
       - pandas
       - jupyterlab>=4.0.*
+      - matplotlib
       - pyyaml
       - requests>=2.31.*
       - pytest
