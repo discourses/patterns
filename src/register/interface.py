@@ -9,7 +9,7 @@ import pandas as pd
 import config
 import src.algorithms.descriptors
 import src.functions.streams
-import src.register.sampling
+import src.register.sample
 
 
 class Interface:
@@ -49,7 +49,7 @@ class Interface:
         :return:
         """
 
-        return src.register.sampling.Sampling(
+        return src.register.sample.Sample(
             settings=self.__settings, metadata=self.__metadata).exc(register=register)
 
     def __append_paths(self, register: pd.DataFrame) -> pd.DataFrame:
