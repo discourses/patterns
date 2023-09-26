@@ -1,7 +1,9 @@
 """
 This is data type Metadata
 """
+import os
 import typing
+import src.algorithms.descriptors
 
 
 class Metadata(typing.NamedTuple):
@@ -9,8 +11,11 @@ class Metadata(typing.NamedTuple):
     Constructor
     """
 
-    url: str = None
-    key: str
-    fields: list
-    path: str
-    labels: list
+    dictionary = src.algorithms.descriptors.Descriptors(
+        path=os.path.join(os.getcwd(), 'data', 'images.yml')).exc(node=['metadata'])
+
+    url: str = dictionary['url']
+    key: str = dictionary['key']
+    fields: list = dictionary['fields']
+    path: str = dictionary['path']
+    labels: list = dictionary['labels']
