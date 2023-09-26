@@ -1,5 +1,5 @@
 """
-sampling.py
+sample.py
 """
 import logging
 
@@ -8,9 +8,9 @@ import pandas as pd
 import config
 
 
-class Sampling:
+class Sample:
     """
-    Class Sampling
+    Class Sample
 
     Extracts a sample from the register of images; it ensures an appropriate sample size per class
     by comparing the -number of records per label- & -sample size requested-
