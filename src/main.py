@@ -19,8 +19,8 @@ def main():
 
     logger.info(tf.config.list_physical_devices(device_type='GPU'))
 
-    # If True, download the online images ...
-    if DOWNLOAD:
+    # If True, unload the online images ...
+    if UNLOAD:
         src.images.interface.Interface().exc()
 
     # Proceed
@@ -55,6 +55,6 @@ if __name__ == '__main__':
     import src.modelling.interface
 
     # Later, the arguments
-    DOWNLOAD = False
+    UNLOAD = False
 
     main()
