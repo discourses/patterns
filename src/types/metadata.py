@@ -8,7 +8,7 @@ import src.algorithms.descriptors
 
 class Metadata(typing.NamedTuple):
     """
-    Constructor
+    The metadata class.
     """
 
     dictionary = src.algorithms.descriptors.Descriptors(
@@ -19,3 +19,6 @@ class Metadata(typing.NamedTuple):
     fields: list = dictionary['fields']
     path: str = dictionary['path']
     labels: list = dictionary['labels']
+
+    def __init__(self):
+        pass
