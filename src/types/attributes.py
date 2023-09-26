@@ -3,12 +3,13 @@ This is data type Attributes
 """
 import os
 import typing
+
 import src.algorithms.descriptors
 
 
 class Attributes(typing.NamedTuple):
     """
-    The attributes class
+    The attributes class.
     """
 
     dictionary = src.algorithms.descriptors.Descriptors(
