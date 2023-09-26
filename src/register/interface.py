@@ -12,7 +12,7 @@ import src.functions.streams
 import src.register.sampling
 
 
-class Sample:
+class Interface:
     """
     Class Sample
     """
