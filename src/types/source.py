@@ -3,12 +3,13 @@ This is data type Source
 """
 import os
 import typing
+
 import src.algorithms.descriptors
 
 
 class Source(typing.NamedTuple):
     """
-    The source class
+    The source class.
     """
 
     dictionary = src.algorithms.descriptors.Descriptors(
