@@ -40,8 +40,8 @@ jobs:
           flake8 --count --select E9,F63,F7,F82 --show-source --statistics src/images
           echo "src/modelling"
           flake8 --count --select E9,F63,F7,F82 --show-source --statistics src/modelling
-          echo "src/register"
-          flake8 --count --select E9,F63,F7,F82 --show-source --statistics src/register
+          echo "src/sampling"
+          flake8 --count --select E9,F63,F7,F82 --show-source --statistics src/sampling
           
           # Herein, --exit-zero treats all errors as warnings. Note, the GitHub editor is 127 characters wide
           printf "\n"
@@ -52,8 +52,8 @@ jobs:
           flake8 --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics src/images
           echo "src/modelling"
           flake8 --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics src/modelling
-          echo "src/register"
-          flake8 --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics src/register
+          echo "src/sampling"
+          flake8 --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics src/sampling
 
       - name: Lint with pylint
         run: |
@@ -69,8 +69,8 @@ jobs:
           pylint --rcfile .pylintrc src/images
           echo "src/modelling"
           pylint --rcfile .pylintrc src/modelling
-          echo "src/register"
-          pylint --rcfile .pylintrc src/register
+          echo "src/sampling"
+          pylint --rcfile .pylintrc src/sampling
 
       - name: Test with pytest
         run: |
