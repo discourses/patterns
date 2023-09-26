@@ -19,6 +19,3 @@ class Metadata(typing.NamedTuple):
     fields: list = dictionary['fields']
     path: str = dictionary['path']
     labels: list = dictionary['labels']
-
-    def __init__(self):
-        pass
