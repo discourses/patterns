@@ -6,7 +6,6 @@ import typing
 import pandas as pd
 
 
-
 class Partitions(typing.NamedTuple):
     """
     The partitions class.
