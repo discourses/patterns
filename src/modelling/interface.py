@@ -5,7 +5,7 @@ import logging
 import os
 
 import config
-import src.functions.descriptors
+import src.algorithms.descriptors
 import src.functions.streams
 import src.modelling.splits
 import src.modelling.pipeline
@@ -48,7 +48,7 @@ class Interface:
         :return:
         """
 
-        descriptors = src.functions.descriptors.Descriptors(
+        descriptors = src.algorithms.descriptors.Descriptors(
             path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
 
         settings = self.Settings(**descriptors.exc(node=['settings']))
