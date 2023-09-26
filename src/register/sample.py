@@ -7,7 +7,7 @@ import os
 import pandas as pd
 
 import config
-import src.functions.descriptors
+import src.algorithms.descriptors
 import src.functions.streams
 import src.register.sampling
 
