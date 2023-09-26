@@ -9,7 +9,7 @@ import src.algorithms.descriptors
 import src.functions.streams
 import src.modelling.splits
 import src.modelling.pipeline
-import src.register.sample
+import src.register.interface
 
 
 class Interface:
@@ -64,7 +64,7 @@ class Interface:
         :return:
         """
 
-        sample = src.register.sample.Sample(
+        sample = src.register.interface.Interface(
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
