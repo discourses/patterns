@@ -7,12 +7,11 @@ import os
 import pandas as pd
 
 import src.algorithms.descriptors
+import src.elements.metadata
+import src.elements.settings
+import src.elements.source
 import src.functions.streams
 import src.sampling.sample
-
-import src.types.settings
-import src.types.metadata
-import src.types.source
 
 
 class Interface:
@@ -22,9 +21,9 @@ class Interface:
 
     
 
-    def __init__(self, settings: src.types.settings.Settings,
-                 metadata: src.types.metadata.Metadata,
-                 source: src.types.source.Source):
+    def __init__(self, settings: src.elements.settings.Settings,
+                 metadata: src.elements.metadata.Metadata,
+                 source: src.elements.source.Source):
         """
 
         :param settings:
