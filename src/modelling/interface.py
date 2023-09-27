@@ -2,14 +2,16 @@
 interface.py
 """
 import logging
-import os
 
-import config
 import src.algorithms.descriptors
 import src.functions.streams
-import src.modelling.splits
 import src.modelling.pipeline
+import src.modelling.splits
 import src.sampling.interface
+import src.types.attributes
+import src.types.metadata
+import src.types.settings
+import src.types.source
 
 
 class Interface:
@@ -19,11 +21,7 @@ class Interface:
     This class executes the series of modelling, evaluation, etc., steps.
     """
 
-    Settings = config.Config().Settings
-    Metadata = config.Config().Metadata
-    Source = config.Config().Source
-    Attributes = config.Config().Attributes
-
+    
     def __init__(self):
         """
         Constructor
@@ -36,27 +34,14 @@ class Interface:
         self.__logger = logging.getLogger(__name__)
 
         # Descriptors
-        self.__settings, self.__metadata, self.__source, self.__attributes = self.__descriptors()
+        self.__attributes = src.types.attributes.Attributes()
+        self.__metadata = src.types.metadata.Metadata()
+        self.__settings = src.types.settings.Settings()
+        self.__source = src.types.source.Source()
 
         # Pipeline Objects
         self.__pipeline = src.modelling.pipeline.Pipeline(
             attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
-
-    def __descriptors(self):
-        """
-
-        :return:
-        """
-
-        descriptors = src.algorithms.descriptors.Descriptors(
-            path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
-
-        settings = self.Settings(**descriptors.exc(node=['settings']))
-        metadata = self.Metadata(**descriptors.exc(node=['metadata']))
-        source = self.Source(**descriptors.exc(node=['data', 'source']))
-        attributes = self.Attributes(**descriptors.exc(node=['data', 'attributes']))
-
-        return settings, metadata, source, attributes
 
     def exc(self):
         """
