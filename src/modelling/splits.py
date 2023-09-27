@@ -5,7 +5,9 @@ import pandas as pd
 
 import src.functions.splitting
 
-import config
+import src.types.settings
+import src.types.metadata
+import src.types.partitions
 
 
 class Splits:
@@ -15,11 +17,8 @@ class Splits:
     Delivers the learning, validation, and testing splits
     """
 
-    Settings = config.Config().Settings
-    Metadata = config.Config().Metadata
-    Partitions = config.Config().Partitions
-
-    def __init__(self, settings: Settings, metadata: Metadata):
+    def __init__(self, settings: src.types.settings.Settings,
+                 metadata: src.types.metadata.Metadata):
         """
 
         :param settings:
@@ -29,7 +28,9 @@ class Splits:
         # Data Classes
         self.__settings = settings
         self.__metadata = metadata
-        self.__features = metadata.fields + [metadata.path]
+
+        # And
+        self.__fields = metadata.features + [metadata.path]
 
         # Instances
         self.__splitting = src.functions.splitting.Splitting(random_state=self.__settings.random_state)
@@ -43,10 +44,10 @@ class Splits:
         """
 
         return self.__splitting.exc(
-            independent=data[self.__features], dependent=data[self.__metadata.labels],
+            independent=data[self.__fields], dependent=data[self.__metadata.labels],
             train_size=train_size, stratify=data[self.__metadata.labels])
 
-    def exc(self, sample: pd.DataFrame) -> Partitions:
+    def exc(self, sample: pd.DataFrame) -> src.types.partitions.Partitions:
         """
 
         :param sample:  The metadata data frame that will be split into training/validating/testing
@@ -59,4 +60,5 @@ class Splits:
         validating, testing = self.__splits(
             data=evaluating, train_size=self.__settings.train_size_evaluation)
 
-        return self.Partitions(training=training, validating=validating, testing=testing)
+        return src.types.partitions.Partitions(
+            training=training, validating=validating, testing=testing)
