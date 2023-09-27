@@ -4,14 +4,14 @@ interface.py
 import logging
 
 import src.algorithms.descriptors
+import src.elements.attributes
+import src.elements.metadata
+import src.elements.settings
+import src.elements.source
 import src.functions.streams
 import src.modelling.pipeline
 import src.modelling.splits
 import src.sampling.interface
-import src.types.attributes
-import src.types.metadata
-import src.types.settings
-import src.types.source
 
 
 class Interface:
@@ -33,10 +33,10 @@ class Interface:
         self.__logger = logging.getLogger(__name__)
 
         # Descriptors
-        self.__attributes = src.types.attributes.Attributes()
-        self.__metadata = src.types.metadata.Metadata()
-        self.__settings = src.types.settings.Settings()
-        self.__source = src.types.source.Source()
+        self.__attributes = src.elements.attributes.Attributes()
+        self.__metadata = src.elements.metadata.Metadata()
+        self.__settings = src.elements.settings.Settings()
+        self.__source = src.elements.source.Source()
 
         # Pipeline Objects
         self.__pipeline = src.modelling.pipeline.Pipeline(
