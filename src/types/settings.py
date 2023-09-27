@@ -20,7 +20,7 @@ class Settings(typing.NamedTuple):
     class_sample_size: int = dictionary['class_sample_size']
     epochs: int = dictionary['epochs']
     random_state: int = dictionary['random_state']
-    minimum_class_instances: int
+    minimum_class_instances: int = dictionary['minimum_class_instances']
     batch_size: int = dictionary['batch_size']
     train_size_initial: float = dictionary['train_size_initial']
     train_size_evaluation: float = dictionary['train_size_evaluation']
