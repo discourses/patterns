@@ -20,3 +20,4 @@ class Source(typing.NamedTuple):
     index_to: int = dictionary['index_to']
     index_zero_filling: int = dictionary['index_zero_filling']
     ext: str = dictionary['ext']
+    directory: list = dictionary['directory']
