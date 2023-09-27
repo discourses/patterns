@@ -46,20 +46,20 @@ class Interface:
         return src.functions.streams.Streams().api(
             uri=self.__metadata.url, header=0)
 
-    def __sample(self, register: pd.DataFrame) -> pd.DataFrame:
+    def __sample(self, registry: pd.DataFrame) -> pd.DataFrame:
         """
 
-        :param register:
+        :param registry:
         :return:
         """
 
         return src.sampling.sample.Sample(
-            settings=self.__settings, metadata=self.__metadata).exc(register=register)
+            settings=self.__settings, metadata=self.__metadata).exc(registry=registry)
 
-    def __append_paths(self, register: pd.DataFrame) -> pd.DataFrame:
+    def __append_paths(self, sample: pd.DataFrame) -> pd.DataFrame:
         """
 
-        :param register:
+        :param registry:
         :return:
         """
 
@@ -67,7 +67,7 @@ class Interface:
         frame = pd.DataFrame(data=paths, columns=[self.__metadata.path])
         frame.loc[:, 'name'] = frame.copy()[self.__metadata.path].apply(lambda x: os.path.split(x)[1])
 
-        frame = frame.copy().merge(register, how='inner', on='name')
+        frame = frame.copy().merge(sample, how='inner', on='name')
 
         return frame
 
@@ -77,8 +77,8 @@ class Interface:
         :return:
         """
 
-        register = self.__registry()
-        register = self.__sample(register=register.copy())
-        register = self.__append_paths(register=register.copy())
+        registry = self.__registry()
+        sample = self.__sample(registry=registry.copy())
+        sample = self.__append_paths(sample=sample.copy())
 
-        return register
+        return sample
