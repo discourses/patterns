@@ -19,8 +19,6 @@ class Interface:
     Class Sample
     """
 
-    
-
     def __init__(self, settings: src.elements.settings.Settings,
                  metadata: src.elements.metadata.Metadata,
                  source: src.elements.source.Source):
