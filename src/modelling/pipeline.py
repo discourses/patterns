@@ -5,9 +5,9 @@ pipeline.py
 import pandas as pd
 import tensorflow as tf
 
-import src.types.attributes
-import src.types.metadata
-import src.types.settings
+import src.elements.attributes
+import src.elements.metadata
+import src.elements.settings
 
 
 class Pipeline:
@@ -19,8 +19,8 @@ class Pipeline:
     much more efficient.
     """
 
-    def __init__(self, attributes: src.types.attributes.Attributes, metadata: src.types.metadata.Metadata, 
-                 settings: src.types.settings.Settings):
+    def __init__(self, attributes: src.elements.attributes.Attributes, metadata: src.elements.metadata.Metadata, 
+                 settings: src.elements.settings.Settings):
         """
 
         :param attributes:
