@@ -5,7 +5,8 @@ import logging
 
 import pandas as pd
 
-import config
+import src.types.metadata
+import src.types.settings
 
 
 class Sample:
@@ -16,10 +17,7 @@ class Sample:
     by comparing the -number of records per label- & -sample size requested-
     """
 
-    Settings = config.Config().Settings
-    Metadata = config.Config().Metadata
-
-    def __init__(self, settings: Settings, metadata: Metadata):
+    def __init__(self, settings: src.types.settings.Settings, metadata: src.types.metadata.Metadata):
         """
         Constructor
 
@@ -67,7 +65,7 @@ class Sample:
         """
 
         # Hence
-        excerpt = registry.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels] \
+        excerpt = registry.groupby(self.__metadata.labels)[self.__metadata.features + self.__metadata.labels] \
             .apply(lambda x: x.sample(n=class_sample_size, replace=self.__settings.replace,
                                       random_state=self.__settings.random_state))
         excerpt.reset_index(drop=True, inplace=True)
