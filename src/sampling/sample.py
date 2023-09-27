@@ -5,8 +5,8 @@ import logging
 
 import pandas as pd
 
-import src.types.metadata
-import src.types.settings
+import src.elements.metadata
+import src.elements.settings
 
 
 class Sample:
@@ -17,7 +17,7 @@ class Sample:
     by comparing the -number of records per label- & -sample size requested-
     """
 
-    def __init__(self, settings: src.types.settings.Settings, metadata: src.types.metadata.Metadata):
+    def __init__(self, settings: src.elements.settings.Settings, metadata: src.elements.metadata.Metadata):
         """
         Constructor
 
