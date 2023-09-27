@@ -37,7 +37,7 @@ class Interface:
         self.__metadata = metadata
         self.__source = source
 
-    def __register(self) -> pd.DataFrame:
+    def __registry(self) -> pd.DataFrame:
         """
 
         :return:
@@ -77,7 +77,7 @@ class Interface:
         :return:
         """
 
-        register = self.__register()
+        register = self.__registry()
         register = self.__sample(register=register.copy())
         register = self.__append_paths(register=register.copy())
 
