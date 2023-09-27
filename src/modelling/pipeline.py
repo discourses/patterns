@@ -19,7 +19,7 @@ class Pipeline:
     much more efficient.
     """
 
-    def __init__(self, attributes: src.elements.attributes.Attributes, metadata: src.elements.metadata.Metadata, 
+    def __init__(self, attributes: src.elements.attributes.Attributes, metadata: src.elements.metadata.Metadata,
                  settings: src.elements.settings.Settings):
         """
 
