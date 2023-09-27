@@ -12,7 +12,7 @@ class Sample:
     """
     Class Sample
 
-    Extracts a sample from the register of images; it ensures an appropriate sample size per class
+    Extracts a sample from the registry of images; it ensures an appropriate sample size per class
     by comparing the -number of records per label- & -sample size requested-
     """
 
@@ -58,35 +58,35 @@ class Sample:
 
         return class_sample_size
 
-    def __excerpt(self, register: pd.DataFrame, class_sample_size: int) -> pd.DataFrame:
+    def __excerpt(self, registry: pd.DataFrame, class_sample_size: int) -> pd.DataFrame:
         """
 
-        :param register:
+        :param registry:
         :param class_sample_size:
         :return:
         """
 
         # Hence
-        excerpt = register.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels] \
+        excerpt = registry.groupby(self.__metadata.labels)[self.__metadata.fields + self.__metadata.labels] \
             .apply(lambda x: x.sample(n=class_sample_size, replace=self.__settings.replace,
                                       random_state=self.__settings.random_state))
         excerpt.reset_index(drop=True, inplace=True)
 
         return excerpt
 
-    def exc(self, register: pd.DataFrame) -> pd.DataFrame:
+    def exc(self, registry: pd.DataFrame) -> pd.DataFrame:
         """
 
-        :param register: The images register
+        :param registry: The images registry
         :return:
-            A sample of the register
+            A sample of the registry
         """
 
         # __sample_size()
-        n_per_label: pd.Series = register[self.__metadata.labels].sum(axis=0)
+        n_per_label: pd.Series = registry[self.__metadata.labels].sum(axis=0)
         class_sample_size: int = self.__sample_size(n_per_label)
 
         # The sample
-        excerpt = self.__excerpt(register=register, class_sample_size=class_sample_size)
+        excerpt = self.__excerpt(registry=registry, class_sample_size=class_sample_size)
 
         return excerpt
