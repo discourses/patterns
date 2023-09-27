@@ -6,10 +6,13 @@ import os
 
 import pandas as pd
 
-import config
 import src.algorithms.descriptors
 import src.functions.streams
 import src.sampling.sample
+
+import src.types.settings
+import src.types.metadata
+import src.types.source
 
 
 class Interface:
@@ -17,11 +20,11 @@ class Interface:
     Class Sample
     """
 
-    Settings = config.Config().Settings
-    Metadata = config.Config().Metadata
-    Source = config.Config().Source
+    
 
-    def __init__(self, settings: Settings, metadata: Metadata, source: Source):
+    def __init__(self, settings: src.types.settings.Settings,
+                 metadata: src.types.metadata.Metadata,
+                 source: src.types.source.Source):
         """
 
         :param settings:
@@ -29,6 +32,7 @@ class Interface:
         :param source:
         """
 
+        # Descriptors
         self.__settings = settings
         self.__metadata = metadata
         self.__source = source
