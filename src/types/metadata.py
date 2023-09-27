@@ -17,6 +17,6 @@ class Metadata(typing.NamedTuple):
 
     url: str = dictionary['url']
     key: str = dictionary['key']
-    fields: list = dictionary['fields']
+    features: list = dictionary['features']
     path: str = dictionary['path']
     labels: list = dictionary['labels']
