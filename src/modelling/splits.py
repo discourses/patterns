@@ -5,9 +5,9 @@ import pandas as pd
 
 import src.functions.splitting
 
-import src.types.settings
-import src.types.metadata
-import src.types.partitions
+import src.elements.settings
+import src.elements.metadata
+import src.elements.partitions
 
 
 class Splits:
@@ -17,8 +17,8 @@ class Splits:
     Delivers the learning, validation, and testing splits
     """
 
-    def __init__(self, settings: src.types.settings.Settings,
-                 metadata: src.types.metadata.Metadata):
+    def __init__(self, settings: src.elements.settings.Settings,
+                 metadata: src.elements.metadata.Metadata):
         """
 
         :param settings:
@@ -47,7 +47,7 @@ class Splits:
             independent=data[self.__fields], dependent=data[self.__metadata.labels],
             train_size=train_size, stratify=data[self.__metadata.labels])
 
-    def exc(self, sample: pd.DataFrame) -> src.types.partitions.Partitions:
+    def exc(self, sample: pd.DataFrame) -> src.elements.partitions.Partitions:
         """
 
         :param sample:  The metadata data frame that will be split into training/validating/testing
@@ -60,5 +60,5 @@ class Splits:
         validating, testing = self.__splits(
             data=evaluating, train_size=self.__settings.train_size_evaluation)
 
-        return src.types.partitions.Partitions(
+        return src.elements.partitions.Partitions(
             training=training, validating=validating, testing=testing)
