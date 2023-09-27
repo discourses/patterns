@@ -21,7 +21,6 @@ class Interface:
     This class executes the series of modelling, evaluation, etc., steps.
     """
 
-    
     def __init__(self):
         """
         Constructor
@@ -53,7 +52,8 @@ class Interface:
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
-        partitions = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        partitions = src.modelling.splits.Splits(
+            settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
 
         training = self.__pipeline.exc(data=partitions.training, testing=False)
         validating = self.__pipeline.exc(data=partitions.validating, testing=False)
