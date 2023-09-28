@@ -40,8 +40,10 @@ class Interface:
         :return:
         """
 
+        dtype = {label: bool for label in self.__metadata.labels}
+
         return src.functions.streams.Streams().api(
-            uri=self.__metadata.url, header=0)
+            uri=self.__metadata.url, header=0, dtype=dtype)
 
     def __sample(self, registry: pd.DataFrame) -> pd.DataFrame:
         """
