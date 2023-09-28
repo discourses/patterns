@@ -18,7 +18,7 @@ class Architecture:
     def __init__(self, attributes: src.elements.attributes.Attributes) -> None:
         """
         
-        :param attributes:
+        :param attributes: A set of image attributes
         """
 
         # Data Classes
@@ -49,9 +49,9 @@ class Architecture:
     def exc(self, hpc: src.elements.hpc.HPC, labels: list, metrics: list = None):
         """
         
-        :param hpc:
-        :param labels:
-        :param metrics:
+        :param hpc: A hyperparameters case
+        :param labels: The classification labels
+        :param metrics: The modelling metrics of interest
         :return:
         """
 
@@ -75,8 +75,8 @@ class Architecture:
                                             beta_units, beta_dropout, classifier])
 
         # Labels. Case
-        # one-hot-code: categorical_crossentropy
-        # integers: sparse_categorical_crossentropy
+        #       one-hot-code: categorical_crossentropy
+        #       integers: sparse_categorical_crossentropy
         if metrics is None:
             model.compile(optimizer=hpc.opt,
                           loss=tf.keras.losses.categorical_crossentropy)
