@@ -2,10 +2,10 @@
 Determines hyperparameter combinations
 """
 import os
+
 import tensorboard.plugins.hparams.api as hp
 
 import src.algorithms.descriptors
-
 import src.elements.hpc
 
 
@@ -22,7 +22,7 @@ class Hyperparameters:
 
     def __init__(self) -> None:
         """
-        
+        Constructor
         """
 
         dictionary = src.algorithms.descriptors.Descriptors(
@@ -37,6 +37,7 @@ class Hyperparameters:
     def __priors(self) -> (hp.HParam, hp.HParam, hp.HParam, hp.HParam, hp.HParam):
         """
         Initialises the set of values per hyperparameter type
+
         :return:
         """
 
@@ -53,6 +54,7 @@ class Hyperparameters:
     def exc(self) -> list[src.elements.hpc.HPC]:
         """
         Creates unique combinations of hyperparameters
+
         :return:
             combinations: A list of dictionaries, wherein each dictionary is a unique combination
             of hyperparameters.  Each combination estimates a distinct/single model.
