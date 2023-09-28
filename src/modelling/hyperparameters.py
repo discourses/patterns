@@ -6,6 +6,8 @@ import tensorboard.plugins.hparams.api as hp
 
 import src.algorithms.descriptors
 
+import src.elements.hpc
+
 
 class Hyperparameters:
     """
@@ -37,7 +39,8 @@ class Hyperparameters:
         Initialises the set of values per hyperparameter type
         :return:
         """
-        alpha_units = hp.HParam('num_units', hp.Discrete(self.__alpha_units))
+
+        alpha_units: hp.HParam = hp.HParam('num_units', hp.Discrete(self.__alpha_units))
         alpha_dropout = hp.HParam('dropout', hp.Discrete(self.__alpha_dropout))
 
         beta_units = hp.HParam('num_units', hp.Discrete(self.__beta_units))
@@ -55,4 +58,13 @@ class Hyperparameters:
             of hyperparameters.  Each combination estimates a distinct/single model.
         """
 
-        self.__priors()
+        alpha_units, alpha_dropout, beta_units, beta_dropout, opt = self.__priors()
+
+        combinations = [src.elements.hpc.HPC(
+            alpha_dropout=i, alpha_units=j, beta_dropout=x, beta_units=y, opt=opt)
+
+            for i in alpha_dropout.domain.values
+            for j in alpha_units.domain.values
+            for x in beta_dropout.domain.values
+            for y in beta_units.domain.values
+            for opt in opt.domain.values]
