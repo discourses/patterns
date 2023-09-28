@@ -87,5 +87,6 @@ class Architecture:
 
         self.__logger.info(base.summary())
         self.__logger.info(model.summary())
+        self.__logger.info(type(model))
 
         return model
