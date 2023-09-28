@@ -2,14 +2,16 @@
 interface.py
 """
 import logging
-import os
 
-import config
-import src.functions.descriptors
+import src.algorithms.descriptors
+import src.elements.attributes
+import src.elements.metadata
+import src.elements.settings
+import src.elements.source
 import src.functions.streams
-import src.modelling.splits
 import src.modelling.pipeline
-import src.register.sample
+import src.modelling.splits
+import src.sampling.interface
 
 
 class Interface:
@@ -18,11 +20,6 @@ class Interface:
 
     This class executes the series of modelling, evaluation, etc., steps.
     """
-
-    Settings = config.Config().Settings
-    Metadata = config.Config().Metadata
-    Source = config.Config().Source
-    Attributes = config.Config().Attributes
 
     def __init__(self):
         """
@@ -36,27 +33,14 @@ class Interface:
         self.__logger = logging.getLogger(__name__)
 
         # Descriptors
-        self.__settings, self.__metadata, self.__source, self.__attributes = self.__descriptors()
+        self.__attributes = src.elements.attributes.Attributes()
+        self.__metadata = src.elements.metadata.Metadata()
+        self.__settings = src.elements.settings.Settings()
+        self.__source = src.elements.source.Source()
 
         # Pipeline Objects
         self.__pipeline = src.modelling.pipeline.Pipeline(
             attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
-
-    def __descriptors(self):
-        """
-
-        :return:
-        """
-
-        descriptors = src.functions.descriptors.Descriptors(
-            path=os.path.join(os.getcwd(), 'descriptors', 'images.yml'))
-
-        settings = self.Settings(**descriptors.exc(node=['settings']))
-        metadata = self.Metadata(**descriptors.exc(node=['metadata']))
-        source = self.Source(**descriptors.exc(node=['data', 'source']))
-        attributes = self.Attributes(**descriptors.exc(node=['data', 'attributes']))
-
-        return settings, metadata, source, attributes
 
     def exc(self):
         """
@@ -64,11 +48,14 @@ class Interface:
         :return:
         """
 
-        sample = src.register.sample.Sample(
+        sample = src.sampling.interface.Interface(
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
         self.__logger.info(sample)
 
-        partitions = src.modelling.splits.Splits(settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        partitions = src.modelling.splits.Splits(
+            settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        self.__logger.info('Training %s, Validating %s, Testing %s',
+                           partitions.training.shape, partitions.validating.shape, partitions.testing.shape)
 
         training = self.__pipeline.exc(data=partitions.training, testing=False)
         validating = self.__pipeline.exc(data=partitions.validating, testing=False)

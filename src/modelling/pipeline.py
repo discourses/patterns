@@ -5,7 +5,9 @@ pipeline.py
 import pandas as pd
 import tensorflow as tf
 
-import config
+import src.elements.attributes
+import src.elements.metadata
+import src.elements.settings
 
 
 class Pipeline:
@@ -16,12 +18,9 @@ class Pipeline:
     Tensorflow's DataSets and Keras' ImageDataGenerator.  Google's performance exercise suggests that the former is
     much more efficient.
     """
-    Attributes = config.Config().Attributes
-    Metadata = config.Config().Metadata
-    Settings = config.Config().Settings
-    Partitions = config.Config().Partitions
 
-    def __init__(self, attributes: Attributes, metadata: Metadata, settings: Settings):
+    def __init__(self, attributes: src.elements.attributes.Attributes, metadata: src.elements.metadata.Metadata,
+                 settings: src.elements.settings.Settings):
         """
 
         :param attributes:

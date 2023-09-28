@@ -11,10 +11,7 @@ class Config:
     Later, transfer the collections to a class named DataType; remember inheritance.
     """
 
-    '''
-    The values of Settings, Metadata, Source, & Attributes are defined in 
-    descriptors/images.yml
-    '''
+    # The values of Settings, Metadata, Source, & Attributes are defined in descriptors/images.yml
     Settings = collections.namedtuple(
         typename='Settings',
         field_names=['sample', 'replace', 'class_sample_size', 'epochs', 'random_state',
@@ -30,10 +27,7 @@ class Config:
     Attributes = collections.namedtuple(
         typename='Attributes', field_names=['ext', 'rows', 'columns', 'channels', 'rotations'])
 
-    '''
-    These are the metadata data frames of a prospective set of 
-    training, validating, & testing data
-    '''
+    # These are the metadata data frames of a prospective set of training, validating, & testing data
     Partitions = collections.namedtuple(
         typename='Partitions', field_names=['training', 'validating', 'testing'])
 
