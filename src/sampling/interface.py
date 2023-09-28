@@ -60,7 +60,7 @@ class Interface:
         :return:
         """
 
-        paths = glob.glob(pathname=os.path.join(os.getcwd(), *self.__source.directory, '*.png'))
+        paths = glob.glob(pathname=os.path.join(*self.__source.directory, '*.png'))
         frame = pd.DataFrame(data=paths, columns=[self.__metadata.path])
         frame.loc[:, 'name'] = frame.copy()[self.__metadata.path].apply(lambda x: os.path.split(x)[1])
 
