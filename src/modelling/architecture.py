@@ -1,6 +1,9 @@
 """
 The architecture of the deep learning model
 """
+
+import logging
+
 import tensorflow as tf
 
 import src.elements.attributes
@@ -20,6 +23,12 @@ class Architecture:
 
         # Data Classes
         self.__attributes = attributes
+
+        # Logging
+        logging.basicConfig(level=logging.INFO,
+                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
+                            datefmt='%Y-%m-%d %H:%M:%S')
+        self.__logger = logging.getLogger(__name__)
 
     def __baseline(self):
         """
@@ -73,7 +82,7 @@ class Architecture:
                           metrics=metrics,
                           loss=tf.keras.losses.categorical_crossentropy)
 
-        print(base.summary())
-        print(model.summary())
+        self.__logger.info(base.summary())
+        self.__logger.info(model.summary())
 
         return model
