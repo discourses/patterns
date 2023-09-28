@@ -49,6 +49,9 @@ class Architecture:
     def exc(self, hpc: src.elements.hpc.HPC, labels: list, metrics: list = None):
         """
         
+        :param hpc:
+        :param labels:
+        :param metrics:
         :return:
         """
 
@@ -70,7 +73,7 @@ class Architecture:
         # Build
         model = tf.keras.models.Sequential([base, flatten, alpha_units, alpha_dropout,
                                             beta_units, beta_dropout, classifier])
-        
+
         # Labels. Case
         # one-hot-code: categorical_crossentropy
         # integers: sparse_categorical_crossentropy
