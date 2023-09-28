@@ -54,6 +54,8 @@ class Interface:
 
         partitions = src.modelling.splits.Splits(
             settings=self.__settings, metadata=self.__metadata).exc(sample=sample)
+        self.__logger.info('Training %s, Validating %s, Testing %s', 
+                           partitions.training.shape, partitions.validating.shape, partitions.testing.shape)
 
         training = self.__pipeline.exc(data=partitions.training, testing=False)
         validating = self.__pipeline.exc(data=partitions.validating, testing=False)
