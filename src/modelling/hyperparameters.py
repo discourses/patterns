@@ -26,11 +26,11 @@ class Hyperparameters:
         dictionary = src.algorithms.descriptors.Descriptors(
             path=os.path.join(os.getcwd(), 'data', 'images.yml')).exc(node=['hyperparameters'])
 
-        self.__alpha_units = dictionary['alpha_units']
-        self.__alpha_dropout = dictionary['alpha_dropout']
-        self.__beta_units = dictionary['beta_units']
-        self.__beta_dropout = dictionary['beta_dropout']
-        self.__opt: list = dictionary['opt']
+        self.__alpha_units: list[int] = dictionary['alpha_units']
+        self.__alpha_dropout: list[float] = dictionary['alpha_dropout']
+        self.__beta_units: list[int] = dictionary['beta_units']
+        self.__beta_dropout: list[float] = dictionary['beta_dropout']
+        self.__opt: list[str] = dictionary['opt']
 
     def __priors(self) -> (hp.HParam, hp.HParam, hp.HParam, hp.HParam, hp.HParam):
         """
@@ -43,9 +43,9 @@ class Hyperparameters:
         beta_units = hp.HParam('num_units', hp.Discrete(self.__beta_units))
         beta_dropout = hp.HParam('dropout', hp.Discrete(self.__beta_dropout))
 
-        optimization = hp.HParam('optimizer', hp.Discrete(self.__opt))
+        opt = hp.HParam('optimizer', hp.Discrete(self.__opt))
 
-        return alpha_units, alpha_dropout, beta_units, beta_dropout, optimization
+        return alpha_units, alpha_dropout, beta_units, beta_dropout, opt
 
     def exc(self) -> list:
         """
