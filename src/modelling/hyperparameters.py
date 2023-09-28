@@ -50,7 +50,7 @@ class Hyperparameters:
 
         return alpha_units, alpha_dropout, beta_units, beta_dropout, opt
 
-    def exc(self) -> list:
+    def exc(self) -> list[src.elements.hpc.HPC]:
         """
         Creates unique combinations of hyperparameters
         :return:
@@ -68,3 +68,5 @@ class Hyperparameters:
             for x in beta_dropout.domain.values
             for y in beta_units.domain.values
             for opt in opt.domain.values]
+
+        return combinations
