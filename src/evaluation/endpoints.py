@@ -29,7 +29,7 @@ class Endpoints:
         """
 
         return tf.keras.callbacks.EarlyStopping(
-            monitor='val_loss', verbose=1, patience=self.__settings.early_stopping_patience, 
+            monitor='val_loss', verbose=1, patience=self.__settings.early_stopping_patience,
             mode='min', restore_best_weights=True)
 
     @staticmethod
