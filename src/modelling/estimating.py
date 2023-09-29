@@ -30,10 +30,17 @@ class Estimating:
 
 
     def __endpoints(self):
+        """
+        
+        :return:
+        """
 
         endpoints = src.evaluation.endpoints.Endpoints(settings=self.__settings)
 
+        # Stopping
         early_stopping = endpoints.early_stopping()
+
+        # Persisting Checkpoints
         model_checkpoint = endpoints.model_checkpoint(network_checkpoints_path='')
 
         return early_stopping, model_checkpoint
@@ -61,4 +68,5 @@ class Estimating:
         :return:
         """
 
-        self.__estimate(model=model)
+        history = self.__estimate(model=model)
+        print(history)
