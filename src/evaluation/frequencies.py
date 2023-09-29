@@ -100,11 +100,11 @@ class Frequencies:
         computations = []
         for threshold in self.__thresholds:
 
-            tp = self.true_positive(threshold=threshold)
-            tn = self.true_negative(threshold=threshold)
-            fp = self.false_positive(threshold=threshold)
-            fn = self.false_negative(threshold=threshold)
-            frame = self.frame(elements=(tp, tn, fp, fn))
+            tpv = self.true_positive(threshold=threshold)
+            tnv = self.true_negative(threshold=threshold)
+            fpv = self.false_positive(threshold=threshold)
+            fnv = self.false_negative(threshold=threshold)
+            frame = self.frame(elements=(tpv, tnv, fpv, fnv))
             computations.append(frame)
 
         dask.visualize(computations, filename='error', format='pdf')
