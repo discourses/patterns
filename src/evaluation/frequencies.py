@@ -42,8 +42,7 @@ class Frequencies:
 
         return (structure & (plausible > 0)).astype(int)
 
-    @staticmethod
-    def elements(threshold: float, instances: np.ndarray, segment: str):
+    def elements(self, threshold: float, instances: np.ndarray, segment: str):
         """
         
         :param threshold:
