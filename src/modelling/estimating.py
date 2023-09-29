@@ -16,8 +16,8 @@ class Estimating:
     Class Estimating
     """
 
-    def __init__(self, settings: src.elements.settings.Settings, 
-                 generators: src.elements.generators.Generators, 
+    def __init__(self, settings: src.elements.settings.Settings,
+                 generators: src.elements.generators.Generators,
                  partitions: src.elements.partitions.Partitions) -> None:
         """
         
