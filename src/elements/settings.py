@@ -27,3 +27,6 @@ class Settings(typing.NamedTuple):
     early_stopping_patience: int = dictionary['early_stopping_patience']
     model_checkpoints_directory: list = dictionary['model_checkpoints_directory']
     error_matrix_variables: list = dictionary['error_matrix_variables']
+    threshold_min: float = dictionary['threshold_min']
+    threshold_max: float = dictionary['threshold_max']
+    threshold_step: float = dictionary['threshold_step']
