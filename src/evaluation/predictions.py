@@ -5,6 +5,7 @@ Predicting with respect to a model
 import math
 import os
 
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 
@@ -28,7 +29,7 @@ class Predictions:
         :param metadata:
         :param settings:
         """
-        
+
         self.__identifier = identifier
         self.__metadata = metadata
         self.__settings = settings
@@ -46,7 +47,7 @@ class Predictions:
             path=os.path.join(self.__settings.model_checkpoints_directory, self.__identifier, f'{name}_predictions.csv'))
 
     def exc(self, model: tf.keras.Sequential, partition_: pd.DataFrame, generator_: tf.data.Dataset,
-            name: str):
+            name: str) -> np.ndarray:
         """
         
         :param model:
@@ -54,7 +55,7 @@ class Predictions:
 
         steps = math.ceil(partition_.shape[0] / self.__settings.batch_size)
 
-        plausibilities = model.predict(generator_, steps=steps)
+        plausibilities: np.ndarray = model.predict(generator_, steps=steps)
 
         # Save
         frame = pd.DataFrame(data=plausibilities, columns=self.__metadata.labels)
