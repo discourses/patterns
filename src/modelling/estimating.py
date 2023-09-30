@@ -65,8 +65,10 @@ class Estimating:
     def exc(self, model: tf.keras.Sequential):
         """
         
+        :param model:
         :return:
         """
 
         history = self.__estimate(model=model)
-        print(history)
+
+        return history
