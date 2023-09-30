@@ -79,6 +79,3 @@ class Interface:
 
         self.__logger.info('training: %s\nvalidating: %s\ntesting: %s', generators.training.element_spec,
                            generators.validating.element_spec, generators.testing.element_spec)
-
-        example = 'training'
-        self.__logger.info('%s', eval(f'partitions.{example}').head())
