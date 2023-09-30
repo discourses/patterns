@@ -1,6 +1,7 @@
 """
 The modelling steps for interface.py
 """
+import os
 
 import src.modelling.estimating
 import src.modelling.hyperparameters
@@ -47,9 +48,10 @@ class Steps:
 
             index = index + 1
             identifier = str(index).zfill(4)
+            pathway = os.path.join(self.__settings.model_checkpoints_directory, identifier)
 
             model = self.__architecture.exc(hpc=hpc, labels=self.__metadata.labels)
 
-            history = estimating.exc(model=model, identifier=identifier)
+            history = estimating.exc(model=model, pathway=pathway)
 
             print(history)
