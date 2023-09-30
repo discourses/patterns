@@ -55,7 +55,10 @@ class Predictions:
         steps = math.ceil(partition_.shape[0] / self.__settings.batch_size)
 
         plausibilities = model.predict(generator_, steps=steps)
+
+        # Save
         frame = pd.DataFrame(data=plausibilities, columns=self.__metadata.labels)
         frame = partition_.join(frame.copy())
-
         self.__write(blob=frame, name=name)
+
+        return plausibilities
