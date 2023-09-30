@@ -31,7 +31,7 @@ class Estimating:
         self.__partitions = partitions
 
 
-    def __endpoints(self, identifier: str):
+    def __endpoints(self, pathway: str):
         """
         
         :return:
@@ -44,7 +44,7 @@ class Estimating:
 
         # Persisting Checkpoints
         model_checkpoint = endpoints.model_checkpoint(
-            network_checkpoints_path=os.path.join(self.__settings.model_checkpoints_directory, identifier))
+            network_checkpoints_path=pathway)
 
         return early_stopping, model_checkpoint
 
@@ -69,15 +69,15 @@ class Estimating:
 
         return history
 
-    def exc(self, model: tf.keras.Sequential, identifier: str):
+    def exc(self, model: tf.keras.Sequential, pathway: str):
         """
         
-        :param model:
-        :param identifier:
+        :param model: A tf.keras.Sequential model
+        :param pathway: The directory wherein the model's check points will be saved
         :return:
         """
 
-        early_stopping, model_checkpoint = self.__endpoints(identifier=identifier)
+        early_stopping, model_checkpoint = self.__endpoints(pathway=pathway)
 
         history = self.__estimate(model=model, early_stopping=early_stopping, model_checkpoint=model_checkpoint)
 
