@@ -2,14 +2,13 @@
 Estimating a model's parameters
 """
 
-import os
 import math
 
 import tensorflow as tf
 
-import src.elements.settings
 import src.elements.generators
 import src.elements.partitions
+import src.elements.settings
 import src.evaluation.endpoints
 
 
