@@ -48,7 +48,7 @@ class Estimating:
 
         return early_stopping, model_checkpoint
 
-    def __estimate(self, model: tf.keras.Sequential, early_stopping: tf.keras.callbacks.EarlyStopping, 
+    def __estimate(self, model: tf.keras.Sequential, early_stopping: tf.keras.callbacks.EarlyStopping,
                    model_checkpoint: tf.keras.callbacks.ModelCheckpoint):
         """
         
