@@ -62,7 +62,7 @@ class Estimating:
 
         return history
 
-    def network(self, model: tf.keras.Sequential):
+    def exc(self, model: tf.keras.Sequential):
         """
         
         :return:
