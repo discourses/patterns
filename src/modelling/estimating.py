@@ -46,6 +46,11 @@ class Estimating:
         return early_stopping, model_checkpoint
 
     def __estimate(self, model: tf.keras.Sequential):
+        """
+        
+        :param model:
+        :return:
+        """
 
         early_stopping, model_checkpoint = self.__endpoints()
 
