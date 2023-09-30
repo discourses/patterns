@@ -21,16 +21,16 @@ class Predictions:
     Class Predictions
     """
 
-    def __init__(self, identifier: str, metadata: src.elements.metadata.Metadata,
+    def __init__(self, pathway: str, metadata: src.elements.metadata.Metadata,
                  settings: src.elements.settings.Settings) -> None:
         """
         
-        :param identifier:
+        :param pathway:
         :param metadata:
         :param settings:
         """
 
-        self.__identifier = identifier
+        self.__pathway = pathway
         self.__metadata = metadata
         self.__settings = settings
 
@@ -44,7 +44,7 @@ class Predictions:
 
         return src.functions.streams.Streams().write(
             blob=blob,
-            path=os.path.join(self.__settings.model_checkpoints_directory, self.__identifier, f'{name}_predictions.csv'))
+            path=os.path.join(self.__pathway, f'{name}_predictions.csv'))
 
     def exc(self, model: tf.keras.Sequential, partition_: pd.DataFrame, generator_: tf.data.Dataset,
             name: str) -> np.ndarray:
