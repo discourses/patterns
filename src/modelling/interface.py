@@ -64,7 +64,8 @@ class Interface:
         :return:
         """
 
-        # Data Classes
+        # Get a sample of image names.  In general, there are more than 60,000 images, and
+        # it is an imbalanced set of images.
         sample = src.sampling.interface.Interface(
             settings=self.__settings, metadata=self.__metadata, source=self.__source).exc()
 
