@@ -2,6 +2,7 @@
 interface.py
 """
 import logging
+import os
 
 import src.algorithms.descriptors
 import src.elements.attributes
@@ -53,7 +54,7 @@ class Interface:
         """
 
         src.functions.directories.Directories().cleanup(
-            path=self.__settings.model_checkpoints_directory)
+            path=os.path.join(*self.__settings.model_checkpoints_directory))
 
 
     def __generators(self, partitions: src.elements.partitions.Partitions) -> src.elements.generators.Generators:
