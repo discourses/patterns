@@ -1,5 +1,7 @@
 """
-For evaluating various aspects of a model
+For determining
+    (a) predictions vis-a-vis training, validation, and testing data
+    (b) error matrix frequencies vis-a-vis testing data
 """
 import logging
 import os
@@ -17,9 +19,9 @@ import src.evaluation.predictions
 import src.functions.streams
 
 
-class Evaluating:
+class Predicting:
     """
-    Class Evaluating
+    Class Predicting
     """
 
     def __init__(self, metadata: src.elements.metadata.Metadata, settings: src.elements.settings.Settings,
