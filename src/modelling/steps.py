@@ -43,7 +43,7 @@ class Steps:
 
         estimating = src.modelling.estimating.Estimating(
             settings=self.__settings, generators=generators, partitions=partitions)
-        
+
         losses = src.evaluation.losses.Losses()
 
         index: int = 0
