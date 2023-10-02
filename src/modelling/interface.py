@@ -13,6 +13,7 @@ import src.elements.source
 import src.functions.streams
 import src.modelling.pipeline
 import src.modelling.splits
+import src.modelling.steps
 import src.sampling.interface
 
 
@@ -80,3 +81,8 @@ class Interface:
 
         self.__logger.info('training: %s\nvalidating: %s\ntesting: %s', generators.training.element_spec,
                            generators.validating.element_spec, generators.testing.element_spec)
+
+        # Steps
+        src.modelling.steps.Steps(
+            attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings).exc(
+                generators=generators, partitions=partitions)
