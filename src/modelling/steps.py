@@ -47,7 +47,7 @@ class Steps:
         pathway = os.path.join(*self.__settings.model_checkpoints_directory, identifier)
 
         # Ensure it exists
-        self.__directories.create( path=pathway)
+        self.__directories.create(path=pathway)
 
         return pathway
 
