@@ -19,7 +19,7 @@ import src.evaluation.predictions
 import src.functions.streams
 
 
-class Predicting:
+class Performance:
     """
     Class Predicting
     """
@@ -72,7 +72,6 @@ class Predicting:
         :return:
         """
 
-        
         # Truth
         truth = partition_[self.__metadata.labels].values
 
