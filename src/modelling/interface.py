@@ -10,6 +10,7 @@ import src.elements.metadata
 import src.elements.partitions
 import src.elements.settings
 import src.elements.source
+import src.functions.directories
 import src.functions.streams
 import src.modelling.pipeline
 import src.modelling.splits
@@ -45,10 +46,20 @@ class Interface:
         self.__pipeline = src.modelling.pipeline.Pipeline(
             attributes=self.__attributes, metadata=self.__metadata, settings=self.__settings)
 
+    def __directories(self):
+        """
+        
+        :return:
+        """
+
+        src.functions.directories.Directories().cleanup(
+            path=self.__settings.model_checkpoints_directory)
+
+
     def __generators(self, partitions: src.elements.partitions.Partitions) -> src.elements.generators.Generators:
         """
         
-        :params partitions:
+        :params partitions: The training, validation, and testing data partitions
         :return:
         """
 
@@ -64,6 +75,9 @@ class Interface:
 
         :return:
         """
+
+        # Clear outputs directory
+        self.__directories()
 
         # Get a sample of image names.  In general, there are more than 60,000 images, and
         # it is an imbalanced set of images.
