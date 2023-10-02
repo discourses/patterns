@@ -1,7 +1,7 @@
 """
 For determining
-    (a) predictions vis-a-vis training, validation, and testing data
-    (b) error matrix frequencies vis-a-vis testing data
+    (a) predictions vis-à-vis training, validation, and testing data
+    (b) error matrix frequencies vis-à-vis testing data
 """
 import logging
 import os
