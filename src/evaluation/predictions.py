@@ -43,7 +43,7 @@ class Predictions:
 
         return src.functions.streams.Streams().write(
             blob=blob,
-            path=os.path.join(self.__pathway, f'{name}_predictions.csv'))
+            path=os.path.join(self.__pathway, name))
 
     def exc(self, model: tf.keras.Sequential, partition_: pd.DataFrame, generator_: tf.data.Dataset,
             name: str) -> np.ndarray:
@@ -53,12 +53,14 @@ class Predictions:
         """
 
         steps = math.ceil(partition_.shape[0] / self.__settings.batch_size)
-
         plausibilities: np.ndarray = model.predict(generator_, steps=steps)
 
-        # Save
+        # Ground Truth
+        self.__write(blob=partition_, name=f'{name}_groundtruth.csv')
+
+        # Plausibilities
         frame = pd.DataFrame(data=plausibilities, columns=self.__metadata.labels)
-        frame = partition_.join(frame.copy())
-        self.__write(blob=frame, name=name)
+        frame = partition_.drop(columns=self.__metadata.labels).join(frame.copy())
+        self.__write(blob=frame, name=f'{name}_predictions.csv')
 
         return plausibilities
