@@ -77,7 +77,7 @@ class Performance:
 
         # Error matrix frequencies
         data = src.evaluation.frequencies.Frequencies(
-            thresholds=self.__thresholds, plausibilities=plausibilities, truth=truth, classes=self.__metadata.labels)
+            thresholds=self.__thresholds, plausibilities=plausibilities, truth=truth, classes=self.__metadata.labels).exc()
 
         return src.functions.streams.Streams().write(
             blob=data, path=os.path.join(self.__pathway, 'frequencies.csv'))
