@@ -3,18 +3,17 @@ The modelling steps for interface.py
 """
 import os
 
-import src.modelling.estimating
-import src.modelling.hyperparameters
-import src.modelling.architecture
-import src.modelling.performance
-
 import src.elements.attributes
-import src.elements.settings
 import src.elements.generators
 import src.elements.metadata
 import src.elements.partitions
-
+import src.elements.settings
 import src.evaluation.losses
+import src.modelling.architecture
+import src.modelling.estimating
+import src.modelling.hyperparameters
+import src.modelling.performance
+
 
 class Steps:
     """
