@@ -43,17 +43,6 @@ class Evaluating:
         self.__generators = generators
         self.__partitions = partitions
 
-    def __losses(self, history, pathway: str):
-        """
-        
-        :param history:
-        :param pathway:
-        :return:
-        """
-
-        src.evaluation.losses.Losses().exc(
-            history=history, path=pathway)
-
     def __predictions(self, model: tf.keras.Sequential, pathway: str):
         """
         
@@ -87,10 +76,9 @@ class Evaluating:
 
             streams.write(blob=data, path=os.path.join(pathway, f'frequencies_{field}.csv'))
 
-    def exc(self, history, model: tf.keras.Sequential, pathway: str):
+    def exc(self, model: tf.keras.Sequential, pathway: str):
         """
         
-        :param history:
         :param model:
         :param pathway:
         :return:
@@ -99,5 +87,4 @@ class Evaluating:
         assert np.setdiff1d(self.__generators._fields,
                             self.__partitions._fields).shape[0] == 0, 'There might be a set-up error w.r.t. modelling data'
 
-        self.__losses(history=history, pathway=pathway)
         self.__predictions(model=model, pathway=pathway)
