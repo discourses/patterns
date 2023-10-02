@@ -6,6 +6,7 @@ import os
 import src.modelling.estimating
 import src.modelling.hyperparameters
 import src.modelling.architecture
+import src.modelling.performance
 
 import src.elements.attributes
 import src.elements.settings
@@ -41,23 +42,30 @@ class Steps:
         :return:
         """
 
+        # Instances
         estimating = src.modelling.estimating.Estimating(
             settings=self.__settings, generators=generators, partitions=partitions)
-
         losses = src.evaluation.losses.Losses()
 
+        # Modelling, etc.
         index: int = 0
-
         for hpc in self.__hyperparameters:
 
+            # A directory name per hyperparameter set
             index = index + 1
             identifier = str(index).zfill(4)
             pathway = os.path.join(self.__settings.model_checkpoints_directory, identifier)
 
+            # A model architecture vis-à-vis the hyperparameter set
             model = self.__architecture.exc(hpc=hpc, labels=self.__metadata.labels)
 
+            # Model training, i.e., estimation of model parameters
             history = estimating.exc(model=model, pathway=pathway)
 
+            # History of losses
             losses.exc(history=history, path=pathway)
 
-            print(history)
+            # Predictions and frequencies
+            src.modelling.performance.Performance(
+                metadata=self.__metadata, settings=self.__settings, model=model, pathway=pathway).exc(
+                    generators=generators, partitions=partitions)
