@@ -9,6 +9,7 @@ import src.elements.metadata
 import src.elements.partitions
 import src.elements.settings
 import src.evaluation.losses
+import src.functions.directories
 import src.modelling.architecture
 import src.modelling.estimating
 import src.modelling.hyperparameters
@@ -35,6 +36,22 @@ class Steps:
         # A list of hyperparameter collections for training the deep learning model
         self.__hyperparameters = src.modelling.hyperparameters.Hyperparameters().exc()
 
+        # Instances
+        self.__directories = src.functions.directories.Directories()
+
+
+    def __pathway(self, index: int) -> str:
+
+        # The pathway string
+        identifier = str(index).zfill(4)
+        pathway = os.path.join(*self.__settings.model_checkpoints_directory, identifier)
+
+        # Ensure it exists
+        self.__directories.create( path=pathway)
+
+        return pathway
+
+
     def exc(self, generators: src.elements.generators.Generators, partitions: src.elements.partitions.Partitions):
         """
         
@@ -52,8 +69,7 @@ class Steps:
 
             # A directory name per hyperparameter set
             index = index + 1
-            identifier = str(index).zfill(4)
-            pathway = os.path.join(*self.__settings.model_checkpoints_directory, identifier)
+            pathway: str = self.__pathway(index=index)
 
             # A model architecture vis-à-vis the hyperparameter set
             model = self.__architecture.exc(hpc=hpc, labels=self.__metadata.labels)
