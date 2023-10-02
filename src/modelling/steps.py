@@ -53,7 +53,7 @@ class Steps:
             # A directory name per hyperparameter set
             index = index + 1
             identifier = str(index).zfill(4)
-            pathway = os.path.join(self.__settings.model_checkpoints_directory, identifier)
+            pathway = os.path.join(*self.__settings.model_checkpoints_directory, identifier)
 
             # A model architecture vis-à-vis the hyperparameter set
             model = self.__architecture.exc(hpc=hpc, labels=self.__metadata.labels)
