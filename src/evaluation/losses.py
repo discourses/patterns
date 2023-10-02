@@ -56,4 +56,4 @@ class Losses:
 
         # Persist
         message = self.__write(blob=frame, path=path)
-        self.__logger.info(message)
+        self.__logger.info('Writing loss values ... \n%s', message)
