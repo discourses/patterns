@@ -13,6 +13,8 @@ import src.elements.generators
 import src.elements.metadata
 import src.elements.partitions
 
+import src.evaluation.losses
+
 class Steps:
     """
     Class Steps
@@ -41,6 +43,8 @@ class Steps:
 
         estimating = src.modelling.estimating.Estimating(
             settings=self.__settings, generators=generators, partitions=partitions)
+        
+        losses = src.evaluation.losses.Losses()
 
         index: int = 0
 
@@ -53,5 +57,7 @@ class Steps:
             model = self.__architecture.exc(hpc=hpc, labels=self.__metadata.labels)
 
             history = estimating.exc(model=model, pathway=pathway)
+
+            losses.exc(history=history, path=pathway)
 
             print(history)
