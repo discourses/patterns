@@ -1,4 +1,3 @@
-
 """
 Predicting with respect to a model
 """
