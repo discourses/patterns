@@ -32,14 +32,12 @@ settings:
   early_stopping_patience: 5
   model_checkpoints_directory: ['checkpoints']
   error_matrix_variables: ['tn', 'fn', 'tp', 'fp']
+  threshold_min: 0
+  threshold_max: 1.0
+  threshold_step: 0.05
 hyperparameters:
-	alpha_units: [512]
+  alpha_units: [512]
   alpha_dropout: [0.1, 0.2]
-	beta_ units: [512]
+  beta_units: [512]
   beta_dropout: [0.1]
-	opt: ['adam']
-evaluating:
-  thresholds:
-    min: 0
-    max: 1.0
-    step: 0.05
+  opt: ['adam']

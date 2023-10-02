@@ -46,7 +46,7 @@ class Architecture:
 
         return base
 
-    def exc(self, hpc: src.elements.hpc.HPC, labels: list, metrics: list = None):
+    def exc(self, hpc: src.elements.hpc.HPC, labels: list, metrics: list = None) -> tf.keras.Sequential:
         """
         
         :param hpc: A hyperparameters case

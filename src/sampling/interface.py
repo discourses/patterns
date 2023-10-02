@@ -36,6 +36,7 @@ class Interface:
 
     def __registry(self) -> pd.DataFrame:
         """
+        Reads-in the registry of skin cancer images
 
         :return:
         """
@@ -47,6 +48,9 @@ class Interface:
 
     def __sample(self, registry: pd.DataFrame) -> pd.DataFrame:
         """
+        Retrieves a sample image names from the registry.  The number of images retrieved depends on
+        the -sample size per class- setting.
+        (ref. (a) images.yml, class_sample_size, (b) src.elements.settings)
 
         :param registry:
         :return:
@@ -57,6 +61,8 @@ class Interface:
 
     def __append_paths(self, sample: pd.DataFrame) -> pd.DataFrame:
         """
+        Per record, this method records the local location of an image, alongside the image name 
+        and other characteristics.
 
         :param registry:
         :return:

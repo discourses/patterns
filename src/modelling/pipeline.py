@@ -76,7 +76,7 @@ class Pipeline:
 
         return img
 
-    def exc(self, data: pd.DataFrame, testing: bool):
+    def exc(self, data: pd.DataFrame, testing: bool) -> tf.data.Dataset:
         """
         Create image delivery pipeline
 

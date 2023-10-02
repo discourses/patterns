@@ -63,12 +63,12 @@ class Hyperparameters:
         alpha_units, alpha_dropout, beta_units, beta_dropout, opt = self.__priors()
 
         combinations = [src.elements.hpc.HPC(
-            alpha_dropout=i, alpha_units=j, beta_dropout=x, beta_units=y, opt=opt)
+            alpha_dropout=i, alpha_units=j, beta_dropout=x, beta_units=y, opt=z)
 
             for i in alpha_dropout.domain.values
             for j in alpha_units.domain.values
             for x in beta_dropout.domain.values
             for y in beta_units.domain.values
-            for opt in opt.domain.values]
+            for z in opt.domain.values]
 
         return combinations
